@@ -1,9 +1,10 @@
 
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Phone, Sparkles, Globe } from 'lucide-react';
+import { Menu, X, Phone, Sparkles } from 'lucide-react';
 import { Language } from '../types';
 import { TRANSLATIONS } from '../translations';
 import { useData } from '../contexts/DataContext';
+import Logo from './Logo';
 
 interface NavigationProps {
   language: Language;
@@ -41,16 +42,13 @@ const Navigation: React.FC<NavigationProps> = ({ language }) => {
             <div className="flex-shrink-0">
                <img 
                  src={siteConfig.logoUrl} 
-                 alt="EcoExplorer Mundo Logo" 
+                 alt="EcoExplora Mundo Logo" 
                  className={`h-12 md:h-14 w-auto object-contain transition-all ${scrolled ? '' : 'brightness-0 invert'}`} 
                />
             </div>
           ) : (
-            <div className="flex-shrink-0 flex items-center gap-2">
-              <Globe size={24} className={scrolled ? 'text-secondary' : 'text-white'} />
-              <span className={`font-serif font-bold text-xl md:text-2xl ${scrolled ? 'text-primary-dark' : 'text-white'}`}>
-                EcoExplorer<span className="text-secondary"> Mundo</span>
-              </span>
+            <div className="flex-shrink-0">
+              <Logo scrolled={scrolled} />
             </div>
           )}
           

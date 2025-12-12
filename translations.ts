@@ -1,3 +1,4 @@
+
 import { Language } from './types';
 
 export const TRANSLATIONS = {
@@ -30,7 +31,7 @@ export const TRANSLATIONS = {
       visionText: "To be the most reputable agency in the region, recognized for creating lasting memories and setting the standard for excellence and value in the tourism industry."
     },
     planner: {
-      badge: 'EcoExplorer AI Agent',
+      badge: 'EcoExplora AI Agent',
       title: 'Design Your Dream Trip',
       subtitle: 'Tell us your vibe, and we will build a custom itinerary with the best market rates and hidden gems.',
       labelGroup: 'Who is traveling?',
@@ -50,7 +51,7 @@ export const TRANSLATIONS = {
       title: "Eco-Rewards Program",
       subtitle: "Join our community. Share your unique experiences and earn points for discounts on future adventures.",
       step1Title: "Travel",
-      step1Desc: "Book any EcoExplorer tour.",
+      step1Desc: "Book any EcoExplora tour.",
       step2Title: "Review",
       step2Desc: "Share your story + photo.",
       step3Title: "Earn",
@@ -59,7 +60,7 @@ export const TRANSLATIONS = {
     },
     form: {
       title: "Start Your Journey",
-      subtitle: "Ready for an unforgettable experience? Fill out the form below to secure your spot with EcoExplorer Mundo.",
+      subtitle: "Ready for an unforgettable experience? Fill out the form below to secure your spot with EcoExplora Mundo.",
       name: "Full Name",
       email: "Email",
       phone: "WhatsApp / Phone",
@@ -67,7 +68,7 @@ export const TRANSLATIONS = {
       promo: "Promo Code (Optional)",
       submit: "Request Quote",
       successTitle: "Adventure Awaits!",
-      successMsg: "Thank you for choosing EcoExplorer Mundo! We are reviewing your request and will send a quote with your discount applied shortly.",
+      successMsg: "Thank you for choosing EcoExplora Mundo! We are reviewing your request and will send a quote with your discount applied shortly.",
       download: "Download Cartagena Guide"
     }
   },
@@ -100,7 +101,7 @@ export const TRANSLATIONS = {
       visionText: "Ser la agencia más reputada de la región, reconocida por crear recuerdos duraderos y establecer el estándar de excelencia y valor en la industria turística."
     },
     planner: {
-      badge: 'Agente EcoExplorer',
+      badge: 'Agente EcoExplora',
       title: 'Diseña Tu Viaje Soñado',
       subtitle: 'Dinos tu estilo y construiremos un itinerario personalizado con las mejores tarifas del mercado y joyas ocultas.',
       labelGroup: '¿Quién viaja?',
@@ -120,7 +121,7 @@ export const TRANSLATIONS = {
       title: "Programa Eco-Rewards",
       subtitle: "Únete a nuestra comunidad. Comparte tus experiencias únicas y gana puntos para descuentos en futuras aventuras.",
       step1Title: "Viaja",
-      step1Desc: "Reserva con EcoExplorer.",
+      step1Desc: "Reserva con EcoExplora.",
       step2Title: "Reseña",
       step2Desc: "Comparte tu historia + foto.",
       step3Title: "Gana",
@@ -129,7 +130,7 @@ export const TRANSLATIONS = {
     },
     form: {
       title: "Comienza Tu Viaje",
-      subtitle: "¿Listo para una experiencia inolvidable? Completa el formulario para asegurar tu lugar con EcoExplorer Mundo.",
+      subtitle: "¿Listo para una experiencia inolvidable? Completa el formulario para asegurar tu lugar con EcoExplora Mundo.",
       name: "Nombre Completo",
       email: "Correo Electrónico",
       phone: "WhatsApp / Teléfono",
@@ -137,7 +138,7 @@ export const TRANSLATIONS = {
       promo: "Código Promocional (Opcional)",
       submit: "Solicitar Cotización",
       successTitle: "¡La Aventura Te Espera!",
-      successMsg: "¡Gracias por elegir EcoExplorer Mundo! Estamos revisando tu solicitud y te enviaremos una cotización con tu descuento aplicado pronto.",
+      successMsg: "¡Gracias por elegir EcoExplora Mundo! Estamos revisando tu solicitud y te enviaremos una cotización con tu descuento aplicado pronto.",
       download: "Descargar Guía Gratis"
     }
   }

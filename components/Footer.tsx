@@ -1,7 +1,8 @@
 
 import React from 'react';
-import { Facebook, Instagram, Twitter, Globe, Lock } from 'lucide-react';
+import { Facebook, Instagram, Twitter, Lock } from 'lucide-react';
 import { useData } from '../contexts/DataContext';
+import Logo from './Logo';
 
 interface FooterProps {
   onAdminClick?: () => void;
@@ -18,14 +19,13 @@ const Footer: React.FC<FooterProps> = ({ onAdminClick }) => {
              {siteConfig.logoUrl ? (
                 <img 
                   src={siteConfig.logoUrl} 
-                  alt="EcoExplorer Mundo Logo" 
+                  alt="EcoExplora Mundo Logo" 
                   className="h-16 w-auto object-contain mb-4 brightness-0 invert" 
                 />
              ) : (
-                <h3 className="text-2xl font-serif font-bold mb-4 flex items-center gap-2">
-                  <Globe size={24} className="text-secondary" />
-                  EcoExplorer<span className="text-secondary"> Mundo</span>
-                </h3>
+                <div className="mb-6">
+                  <Logo scrolled={false} className="h-14" />
+                </div>
              )}
             <p className="text-gray-300 max-w-sm">
               Creating unforgettable memories in Cartagena. High quality, competitive prices, and a reputation built on trust and unique experiences.
@@ -59,7 +59,7 @@ const Footer: React.FC<FooterProps> = ({ onAdminClick }) => {
         </div>
         
         <div className="border-t border-primary pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
-          <p>&copy; {new Date().getFullYear()} EcoExplorer Mundo. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} EcoExplora Mundo. All rights reserved.</p>
           
           {/* Admin Entry Point */}
           {onAdminClick && (
