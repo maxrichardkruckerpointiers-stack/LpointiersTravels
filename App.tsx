@@ -71,7 +71,7 @@ function App() {
         
         {/* === SECTION 1: CATALOG === */}
         {/* 3. Featured Tours */}
-        <FeaturedTours />
+        <FeaturedTours language={language} />
 
         {/* NEW: Rosario Islands Specific Section */}
         <RosarioIslands language={language} />

@@ -27,8 +27,7 @@ const Navigation: React.FC<NavigationProps> = ({ language }) => {
   const navLinks = [
     { name: t.experiences, href: '#experiences' },
     { name: t.planner, href: '#ai-planner', special: true },
-    { name: t.whyUs, href: '#philosophy' },
-    { name: t.reviews, href: '#reviews' },
+    // Removed Philosophy and Reviews links as requested
     { name: t.contact, href: '#contact' },
   ];
 

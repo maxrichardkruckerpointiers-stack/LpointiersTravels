@@ -1,9 +1,14 @@
 
 import React, { useState } from 'react';
-import { Clock, Star, ArrowRight, Leaf } from 'lucide-react';
+import { Clock, Star, ArrowRight, Leaf, Tag } from 'lucide-react';
 import { useData } from '../contexts/DataContext';
+import { Language } from '../types';
 
-const FeaturedTours: React.FC = () => {
+interface FeaturedToursProps {
+  language?: Language;
+}
+
+const FeaturedTours: React.FC<FeaturedToursProps> = ({ language = 'en' }) => {
   const { tours } = useData();
   const [filter, setFilter] = useState<'All' | 'Cultural' | 'Adventure' | 'Gastronomic' | 'Family'>('All');
 
@@ -14,9 +19,14 @@ const FeaturedTours: React.FC = () => {
   return (
     <section id="experiences" className="py-20 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl sm:text-4xl font-serif font-bold text-emerald-950 mb-4">Unforgettable Experiences</h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">Handpicked adventures designed to immerse you in the authentic culture and beauty of Cartagena.</p>
+        {/* Updated Header as requested: Price Chart / Carta de Precios */}
+        <div className="text-center mb-12 border-b border-gray-200 pb-8">
+          <span className="inline-flex items-center gap-1 py-1 px-3 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-200 text-xs font-bold tracking-wider mb-3 uppercase">
+             <Tag size={12} /> {language === 'es' ? 'Temporada 2025' : '2025 Season'}
+          </span>
+          <h2 className="text-3xl sm:text-5xl font-serif font-bold text-emerald-950">
+            {language === 'es' ? 'Carta de Precios y Planes' : 'Official Price List & Plans'}
+          </h2>
         </div>
 
         {/* Filter Tabs */}
@@ -31,7 +41,7 @@ const FeaturedTours: React.FC = () => {
                   : 'bg-white text-gray-600 hover:bg-emerald-50 border border-gray-200'
               }`}
             >
-              {cat}
+              {language === 'es' && cat === 'All' ? 'Todos' : cat}
             </button>
           ))}
         </div>
@@ -46,7 +56,7 @@ const FeaturedTours: React.FC = () => {
                   alt={tour.title} 
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
-                <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-lg text-sm font-bold text-primary shadow-sm border border-emerald-100">
+                <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-lg text-lg font-bold text-primary shadow-sm border border-emerald-100">
                   ${tour.price} USD
                 </div>
                 {/* Thematic Category Badge: Teal/Secondary */}
@@ -85,7 +95,7 @@ const FeaturedTours: React.FC = () => {
                 <p className="text-gray-600 text-sm mb-4 line-clamp-3 flex-grow">{tour.description}</p>
                 
                 <a href="#contact" className="mt-auto w-full flex items-center justify-center gap-2 py-3 border border-primary text-primary rounded-xl font-semibold hover:bg-primary hover:text-white transition-colors group-hover:bg-primary group-hover:text-white">
-                  Book Now <ArrowRight size={16} />
+                  {language === 'es' ? 'Reservar Ahora' : 'Book Now'} <ArrowRight size={16} />
                 </a>
               </div>
             </div>
