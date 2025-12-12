@@ -32,7 +32,8 @@ const Navigation: React.FC<NavigationProps> = ({ language }) => {
   ];
 
   return (
-    <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 border-b ${
+    // Removed "fixed top-0 left-0 z-50" because the parent container in App.tsx handles the fixing
+    <nav className={`w-full transition-all duration-300 border-b ${
       scrolled 
         ? 'bg-emerald-950/90 backdrop-blur-md shadow-lg py-3 border-emerald-800/50' 
         : 'bg-transparent py-5 border-transparent'
@@ -109,15 +110,15 @@ const Navigation: React.FC<NavigationProps> = ({ language }) => {
             ) : (
                 <button 
                   onClick={() => setAuthModalOpen(true)}
-                  className="bg-transparent hover:bg-white/10 text-white px-5 py-2.5 rounded-full font-bold transition-all border border-white/20 flex items-center gap-2 text-sm"
+                  className="bg-transparent hover:bg-white/10 text-white px-5 py-2.5 rounded-full font-bold transition-all border border-white/20 flex items-center gap-2 text-sm whitespace-nowrap"
                 >
-                  <UserIcon size={16} /> Login
+                  <UserIcon size={16} /> {t.loginBtn}
                 </button>
             )}
 
             <a 
               href="#contact" 
-              className="bg-secondary hover:bg-secondary-light text-white px-6 py-2.5 rounded-full font-bold transition-all transform hover:scale-105 shadow-lg shadow-secondary/20 flex items-center gap-2 border border-secondary/50"
+              className="bg-secondary hover:bg-secondary-light text-white px-6 py-2.5 rounded-full font-bold transition-all transform hover:scale-105 shadow-lg shadow-secondary/20 flex items-center gap-2 border border-secondary/50 whitespace-nowrap"
             >
               <Phone size={16} /> {t.book}
             </a>
@@ -171,7 +172,7 @@ const Navigation: React.FC<NavigationProps> = ({ language }) => {
               onClick={() => { setAuthModalOpen(true); setIsOpen(false); }}
               className="mt-2 block w-full text-center border border-white/20 text-white font-bold py-3 rounded-xl hover:bg-white/10"
             >
-              Iniciar Sesión / Registro
+              {t.loginBtn}
             </button>
           )}
 

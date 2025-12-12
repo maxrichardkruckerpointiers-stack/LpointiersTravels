@@ -15,6 +15,7 @@ import TopBanner from './components/TopBanner';
 import LoyaltyProgram from './components/LoyaltyProgram';
 import AdminPanel from './components/AdminPanel';
 import AuthModal from './components/AuthModal';
+import SafetyGuarantee from './components/SafetyGuarantee';
 import { Language } from './types';
 import { DataProvider } from './contexts/DataContext';
 
@@ -64,11 +65,14 @@ function App() {
         {/* Auth Modal for Customers */}
         <AuthModal />
         
-        {/* 0. Top Banner Offer */}
-        <TopBanner language={language} />
+        {/* FIXED HEADER CONTAINER: Holds Banner + Nav together */}
+        <div className="fixed top-0 left-0 w-full z-50 flex flex-col transition-all duration-300">
+          {/* 0. Top Banner Offer */}
+          <TopBanner language={language} />
 
-        {/* 2. Minimalist Navigation */}
-        <Navigation language={language} />
+          {/* 2. Minimalist Navigation */}
+          <Navigation language={language} />
+        </div>
         
         {/* 1. Hero Header */}
         <Hero language={language} />
@@ -87,6 +91,9 @@ function App() {
         {/* === SECTION 3: CONTACT & INFO === */}
         {/* 6. Practical Info */}
         <PracticalInfo />
+        
+        {/* NEW: Safety Guarantee (Trust Building before Purchase) */}
+        <SafetyGuarantee language={language} />
         
         {/* 7. Reservation Form (With Promo Code) */}
         <ReservationForm language={language} />

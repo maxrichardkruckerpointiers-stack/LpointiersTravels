@@ -8,6 +8,7 @@ export interface Tour {
   rating: number;
   reviews: number;
   image: string;
+  gallery?: string[]; // Array of image URLs for hover/slideshow
   description: string;
   highlights: string[];
   ecoScore?: {
@@ -23,6 +24,7 @@ export interface Island {
   price: number;
   rating: number;
   image: string;
+  gallery?: string[]; // Array of image URLs
   tags: string[];
   descriptionEn: string;
   descriptionEs: string;

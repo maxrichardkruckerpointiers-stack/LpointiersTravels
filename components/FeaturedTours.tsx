@@ -14,6 +14,7 @@ interface GalleryItem {
   title: string;
   price: number;
   image: string;
+  gallery?: string[];
   rating: number;
   duration: string;
   description: string;
@@ -62,6 +63,7 @@ const FeaturedTours: React.FC<FeaturedToursProps> = ({ language = 'en' }) => {
       title: tour.title,
       price: tour.price,
       image: tour.image,
+      gallery: tour.gallery,
       rating: tour.rating,
       duration: tour.duration,
       description: tour.description,
@@ -77,6 +79,7 @@ const FeaturedTours: React.FC<FeaturedToursProps> = ({ language = 'en' }) => {
       title: island.name,
       price: island.price,
       image: island.image,
+      gallery: island.gallery,
       rating: island.rating,
       duration: t.fullDay,
       description: language === 'es' ? island.descriptionEs : island.descriptionEn,
@@ -235,17 +238,28 @@ const FeaturedTours: React.FC<FeaturedToursProps> = ({ language = 'en' }) => {
                         key={item.id} 
                         className="group bg-[#051c18] rounded-2xl overflow-hidden border border-emerald-800/50 hover:border-secondary/50 transition-all duration-500 hover:shadow-2xl hover:shadow-emerald-900/40 flex flex-col h-full"
                     >
-                        {/* Image Container */}
+                        {/* Image Container with Hover Effect */}
                         <div className="relative h-64 overflow-hidden">
+                            {/* Main Image */}
                             <img 
                                 src={item.image || "https://images.unsplash.com/photo-1583531352515-8884af319dc1?q=80&w=800"} 
                                 alt={item.title}
                                 onError={handleImageError}
-                                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-90 group-hover:opacity-100"
+                                className={`w-full h-full object-cover transition-all duration-700 group-hover:scale-110 ${item.gallery && item.gallery.length > 1 ? 'opacity-90 group-hover:opacity-0' : 'opacity-90 group-hover:opacity-100'}`}
                             />
+
+                            {/* Second Image (Visible on Hover if available) */}
+                            {item.gallery && item.gallery.length > 1 && (
+                                <img 
+                                    src={item.gallery[1]}
+                                    alt={item.title + " view 2"}
+                                    onError={handleImageError}
+                                    className="absolute inset-0 w-full h-full object-cover transition-all duration-700 opacity-0 group-hover:opacity-100 group-hover:scale-110"
+                                />
+                            )}
                             
                             {/* Overlay Gradient */}
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80"></div>
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80 pointer-events-none"></div>
 
                             {/* Badges */}
                             <div className="absolute top-4 left-4 flex gap-2">

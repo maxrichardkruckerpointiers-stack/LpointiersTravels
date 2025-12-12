@@ -9,7 +9,8 @@ export const TRANSLATIONS = {
       whyUs: 'Philosophy',
       reviews: 'Reviews',
       contact: 'Contact',
-      book: 'Book Now'
+      book: 'Book Now',
+      loginBtn: 'Log In / Sign Up'
     },
     hero: {
       badge: '#1 Rated Eco-Agency in Colombia',
@@ -58,6 +59,18 @@ export const TRANSLATIONS = {
       step3Desc: "Get 500 Eco-Points.",
       cta: "Start Earning Today"
     },
+    safety: {
+      title: "Buyer Protection Guarantee",
+      subtitle: "Cartagena is beautiful, but informal street tourism can be risky. We ensure your peace of mind.",
+      riskTitle: "The Risks of Informal Vendors",
+      risk1: "Hidden Fees & 'Gringo Tax' (Overcharging)",
+      risk2: "Unlicensed Boats & Safety Hazards",
+      risk3: "No Refunds for Bad Weather/Cancellations",
+      safeTitle: "The EcoExplora Promise",
+      safe1: "100% Fixed & Transparent Pricing",
+      safe2: "Certified Insurance & Legal RNT License",
+      safe3: "Secure Online Payments (No Cash Scams)"
+    },
     form: {
       title: "Start Your Journey",
       subtitle: "Ready for an unforgettable experience? Fill out the form below to secure your spot with EcoExplora Mundo.",
@@ -79,7 +92,8 @@ export const TRANSLATIONS = {
       whyUs: 'Filosofía',
       reviews: 'Reseñas',
       contact: 'Contacto',
-      book: 'Reservar'
+      book: 'Reservar',
+      loginBtn: 'Ingresar / Registro'
     },
     hero: {
       badge: '#1 Agencia Valorada en Colombia',
@@ -127,6 +141,18 @@ export const TRANSLATIONS = {
       step3Title: "Gana",
       step3Desc: "Recibe 500 Eco-Puntos.",
       cta: "Empieza a Ganar Hoy"
+    },
+    safety: {
+      title: "Garantía de Protección al Comprador",
+      subtitle: "Cartagena es hermosa, pero el turismo informal callejero es riesgoso. Nosotros aseguramos tu tranquilidad.",
+      riskTitle: "Riesgos de Vendedores Informales",
+      risk1: "Tarifas Ocultas y Sobreprecios ('Impuesto Turista')",
+      risk2: "Lanchas sin Licencia ni Seguros",
+      risk3: "Sin Reembolsos por Mal Clima",
+      safeTitle: "La Promesa EcoExplora",
+      safe1: "Precios 100% Fijos y Transparentes",
+      safe2: "Seguro de Viaje y Licencia RNT Oficial",
+      safe3: "Pagos Online Seguros (Sin Estafas de Efectivo)"
     },
     form: {
       title: "Comienza Tu Viaje",
