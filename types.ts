@@ -1,3 +1,4 @@
+
 export interface Tour {
   id: string;
   title: string;
@@ -13,6 +14,18 @@ export interface Tour {
     level: 'High' | 'Medium' | 'Low'; // Environmental impact
     tags: string[]; // e.g., "Plastic Free", "Local Community Support"
   };
+}
+
+export interface Island {
+  id: string;
+  name: string;
+  vibe: string;
+  price: number;
+  rating: number;
+  image: string;
+  tags: string[];
+  descriptionEn: string;
+  descriptionEs: string;
 }
 
 export interface ItineraryActivity {

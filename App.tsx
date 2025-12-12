@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import Navigation from './components/Navigation';
 import Hero from './components/Hero';
@@ -13,70 +14,95 @@ import AiChatAssistant from './components/AiChatAssistant';
 import SmartPlanner from './components/SmartPlanner';
 import TopBanner from './components/TopBanner';
 import LoyaltyProgram from './components/LoyaltyProgram';
+import AdminPanel from './components/AdminPanel';
 import { Language } from './types';
+import { DataProvider } from './contexts/DataContext';
 
 function App() {
   const [language, setLanguage] = useState<Language>('en');
+  const [showAdminPanel, setShowAdminPanel] = useState(false);
+  const [isAdminDevice, setIsAdminDevice] = useState(false);
 
   // Detect Language
   useEffect(() => {
     const userLang = navigator.language || navigator.languages[0];
     if (userLang.startsWith('es')) {
       setLanguage('es');
-      console.log('[App] Language detected: Spanish');
-    } else {
-      console.log('[App] Language detected: English');
     }
+  }, []);
 
-    // Analytics Mock
-    const referrer = document.referrer;
-    console.log(`[Analytics] Visit started. Referrer: ${referrer || 'Direct'}`);
+  // SEGURIDAD: Detectar "Llave Maestra" para activar modo administrador
+  useEffect(() => {
+    // 1. Revisar si ya está activado en este navegador
+    const isUnlocked = localStorage.getItem('ecoexplorer_admin_unlocked') === 'true';
+    
+    // 2. Revisar si la URL tiene la llave maestra (ej: ?admin=activar)
+    const params = new URLSearchParams(window.location.search);
+    const adminParam = params.get('admin');
+
+    if (adminParam === 'activar') {
+      // Si escriben la clave, guardamos el permiso y limpiamos la URL para que nadie la vea
+      localStorage.setItem('ecoexplorer_admin_unlocked', 'true');
+      setIsAdminDevice(true);
+      // Limpiar la URL sin recargar
+      window.history.replaceState({}, document.title, window.location.pathname);
+      alert("¡Modo Administrador Activado! Ahora verás el botón de acceso en el pie de página.");
+    } else if (isUnlocked) {
+      // Si ya estaba desbloqueado antes
+      setIsAdminDevice(true);
+    } else {
+      setIsAdminDevice(false);
+    }
   }, []);
 
   return (
-    <div className="antialiased text-gray-900 font-sans">
-      {/* 0. Top Banner Offer */}
-      <TopBanner language={language} />
+    <DataProvider>
+      <div className="antialiased text-gray-900 font-sans">
+        {showAdminPanel && <AdminPanel onClose={() => setShowAdminPanel(false)} />}
+        
+        {/* 0. Top Banner Offer */}
+        <TopBanner language={language} />
 
-      {/* 2. Minimalist Navigation */}
-      <Navigation language={language} />
-      
-      {/* 1. Hero Header */}
-      <Hero language={language} />
-      
-      {/* NEW: AI Smart Planner V2 */}
-      <SmartPlanner language={language} />
-      
-      {/* 3. Featured Tours */}
-      <FeaturedTours />
+        {/* 2. Minimalist Navigation */}
+        <Navigation language={language} />
+        
+        {/* 1. Hero Header */}
+        <Hero language={language} />
+        
+        {/* NEW: AI Smart Planner V2 */}
+        <SmartPlanner language={language} />
+        
+        {/* 3. Featured Tours */}
+        <FeaturedTours />
 
-      {/* NEW: Rosario Islands Specific Section */}
-      <RosarioIslands language={language} />
-      
-      {/* 5. Testimonials */}
-      <Testimonials />
+        {/* NEW: Rosario Islands Specific Section */}
+        <RosarioIslands language={language} />
+        
+        {/* 5. Testimonials */}
+        <Testimonials />
 
-      {/* NEW: Loyalty Program (Points for reviews) */}
-      <LoyaltyProgram language={language} />
-      
-      {/* 8. Interactive Tour Map */}
-      <InteractiveMap />
-      
-      {/* 6. Practical Info */}
-      <PracticalInfo />
-      
-      {/* 7. Reservation Form (With Promo Code) */}
-      <ReservationForm language={language} />
-      
-      {/* 4. Why Choose Us (Philosophy/Mission/Vision) - Moved to bottom as requested */}
-      <WhyChooseUs language={language} />
+        {/* NEW: Loyalty Program (Points for reviews) */}
+        <LoyaltyProgram language={language} />
+        
+        {/* 8. Interactive Tour Map */}
+        <InteractiveMap />
+        
+        {/* 6. Practical Info */}
+        <PracticalInfo />
+        
+        {/* 7. Reservation Form (With Promo Code) */}
+        <ReservationForm language={language} />
+        
+        {/* 4. Why Choose Us (Philosophy/Mission/Vision) - Moved to bottom as requested */}
+        <WhyChooseUs language={language} />
 
-      {/* Footer */}
-      <Footer />
+        {/* Footer with Admin Trigger - SOLO VISIBLE SI ESTÁ DESBLOQUEADO */}
+        <Footer onAdminClick={isAdminDevice ? () => setShowAdminPanel(true) : undefined} />
 
-      {/* AI Chat */}
-      <AiChatAssistant />
-    </div>
+        {/* AI Chat */}
+        <AiChatAssistant />
+      </div>
+    </DataProvider>
   );
 }
 

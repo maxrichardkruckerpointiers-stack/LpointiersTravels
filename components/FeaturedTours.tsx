@@ -1,11 +1,13 @@
+
 import React, { useState } from 'react';
 import { Clock, Star, ArrowRight, Leaf } from 'lucide-react';
-import { TOURS } from '../constants';
+import { useData } from '../contexts/DataContext';
 
 const FeaturedTours: React.FC = () => {
+  const { tours } = useData();
   const [filter, setFilter] = useState<'All' | 'Cultural' | 'Adventure' | 'Gastronomic' | 'Family'>('All');
 
-  const filteredTours = filter === 'All' ? TOURS : TOURS.filter(t => t.category === filter);
+  const filteredTours = filter === 'All' ? tours : tours.filter(t => t.category === filter);
 
   const categories = ['All', 'Cultural', 'Adventure', 'Gastronomic', 'Family'];
 

@@ -1,4 +1,5 @@
-import { Tour, Testimonial, MapMarker } from './types';
+
+import { Tour, Testimonial, MapMarker, Island } from './types';
 
 export const TOURS: Tour[] = [
   {
@@ -6,10 +7,9 @@ export const TOURS: Tour[] = [
     title: 'Cartagena Colonial & Legendaria',
     category: 'Cultural',
     duration: '4 Horas',
-    price: 45, // Adjusted for market competitiveness (High volume, lower margin strategy)
+    price: 45, 
     rating: 4.9,
     reviews: 1450,
-    // Premium image of Palenqueras/Streets
     image: 'https://images.unsplash.com/photo-1583997052308-5645f7945d78?q=80&w=800&auto=format&fit=crop',
     description: 'Sumérgete en la historia. Una experiencia única caminando por las calles amuralladas, descubriendo leyendas coloniales y arquitectura viva.',
     highlights: ['Guía Historiador', 'Degustación de Café', 'Entrada a Museos'],
@@ -23,10 +23,9 @@ export const TOURS: Tour[] = [
     title: 'Paraíso Islas del Rosario VIP',
     category: 'Adventure',
     duration: 'Día Completo',
-    price: 95, // Psychological pricing (under 100)
+    price: 95, 
     rating: 4.8,
     reviews: 920,
-    // Crystal clear water image
     image: 'https://images.unsplash.com/photo-1590523741831-ab7e8b8f9c7f?q=80&w=800&auto=format&fit=crop',
     description: 'Navega en lancha deportiva hacia aguas cristalinas. Snorkel en arrecifes vivos, playa privada y almuerzo gourmet caribeño incluido.',
     highlights: ['Lancha Rápida', 'Snorkel Guiado', 'Barra Abierta'],
@@ -40,10 +39,9 @@ export const TOURS: Tour[] = [
     title: 'Gastro-Tour: Sabores del Caribe',
     category: 'Gastronomic',
     duration: '3.5 Horas',
-    price: 65, // Competitive pricing for food tours
+    price: 65,
     rating: 5.0,
     reviews: 510,
-    // Vibrant food image
     image: 'https://images.unsplash.com/photo-1574567295843-9878dc137c87?q=80&w=800&auto=format&fit=crop',
     description: 'Una explosión de sabor. Desde arepas de huevo hasta ceviches frescos en el mercado. Descubre por qué nuestra cocina es inolvidable.',
     highlights: ['7 Paradas de Comida', 'Mercado Bazurto', 'Bebidas Exóticas'],
@@ -57,10 +55,9 @@ export const TOURS: Tour[] = [
     title: 'Atardecer Mágico en Velero',
     category: 'Family',
     duration: '2 Horas',
-    price: 79, // Adjusted from 85 for better value perception
+    price: 79, 
     rating: 4.9,
     reviews: 340,
-    // Sunset sailing image
     image: 'https://images.unsplash.com/photo-1566415606622-a988184d0092?q=80&w=800&auto=format&fit=crop',
     description: 'La mejor vista de la ciudad moderna y antigua mientras el sol se pone. Cócteles, buena música y un ambiente de alta reputación.',
     highlights: ['Cóctel de Bienvenida', 'Música en Vivo', 'Vistas Panorámicas'],
@@ -68,6 +65,53 @@ export const TOURS: Tour[] = [
       level: 'Medium',
       tags: ['Energía Eólica', 'Conservación Oceánica']
     }
+  }
+];
+
+export const ISLANDS_DATA: Island[] = [
+  {
+    id: 'bora-bora',
+    name: 'Bora Bora Beach Club',
+    vibe: 'Party & Exclusive',
+    price: 95,
+    rating: 4.8,
+    image: 'https://tour5islas.com/wp-content/uploads/2024/09/4.jpg', 
+    tags: ['DJ Live', 'Day Bed', 'Welcome Drink'],
+    descriptionEn: 'The most famous club. Party, house music, and vibrant atmosphere.',
+    descriptionEs: 'El club más famoso. Fiesta, música house y ambiente vibrante.'
+  },
+  {
+    id: 'playa-blanca',
+    name: 'Playa Blanca (Barú)',
+    vibe: 'Popular & Blue Water',
+    price: 35,
+    rating: 4.2,
+    image: 'https://images.unsplash.com/photo-1583362306778-9e7f86127117?q=80&w=800&auto=format&fit=crop', 
+    tags: ['Budget Friendly', 'Crystal Water', 'Local Food'],
+    descriptionEn: 'The bluest and most popular beach. Ideal for tight budgets.',
+    descriptionEs: 'La playa más azul y popular. Ideal para presupuestos ajustados.'
+  },
+  {
+    id: 'cholon',
+    name: 'Cholón Party Boat',
+    vibe: 'Yacht Party',
+    price: 85,
+    rating: 4.7,
+    image: 'https://cdn.yate.co/img/yates/2022/2/5-islas-4-uct1250.jpg', 
+    tags: ['Young Crowd', 'Boat Party', 'Drinks'],
+    descriptionEn: 'Madness on the sea. Boats, loud music, and partying in the water.',
+    descriptionEs: 'La locura en el mar. Lanchas, música a todo volumen y fiesta en el agua.'
+  },
+  {
+    id: 'isla-encanto',
+    name: 'Isla Encanto / Luxury',
+    vibe: 'Relax & Premium',
+    price: 110,
+    rating: 4.9,
+    image: 'https://images.unsplash.com/photo-1540541338287-41700207dee6?q=80&w=800&auto=format&fit=crop', 
+    tags: ['Pool', 'Buffet', 'Private Beach'],
+    descriptionEn: 'Disconnect in a luxury eco-resort with pool and private beach.',
+    descriptionEs: 'Desconéctate en un resort ecológico de lujo con piscina y playa privada.'
   }
 ];
 

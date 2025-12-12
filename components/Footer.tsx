@@ -1,7 +1,12 @@
-import React from 'react';
-import { Facebook, Instagram, Twitter, Globe } from 'lucide-react';
 
-const Footer: React.FC = () => {
+import React from 'react';
+import { Facebook, Instagram, Twitter, Globe, Lock } from 'lucide-react';
+
+interface FooterProps {
+  onAdminClick?: () => void;
+}
+
+const Footer: React.FC<FooterProps> = ({ onAdminClick }) => {
   return (
     <footer className="bg-primary-dark text-white py-12 border-t border-primary">
       <div className="container">
@@ -42,8 +47,18 @@ const Footer: React.FC = () => {
           </div>
         </div>
         
-        <div className="border-t border-primary pt-8 text-center text-sm text-gray-500">
-          &copy; {new Date().getFullYear()} EcoExplorer Mundo. All rights reserved.
+        <div className="border-t border-primary pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
+          <p>&copy; {new Date().getFullYear()} EcoExplorer Mundo. All rights reserved.</p>
+          
+          {/* Admin Entry Point */}
+          {onAdminClick && (
+            <button 
+              onClick={onAdminClick}
+              className="mt-4 md:mt-0 flex items-center gap-1 text-xs opacity-30 hover:opacity-100 transition-opacity"
+            >
+              <Lock size={12} /> Admin
+            </button>
+          )}
         </div>
       </div>
     </footer>

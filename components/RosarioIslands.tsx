@@ -1,7 +1,9 @@
+
 import React from 'react';
-import { Anchor, Sun, Utensils, Music, Users, Star } from 'lucide-react';
+import { Anchor, Sun, Utensils, Star } from 'lucide-react';
 import { Language } from '../types';
 import { TRANSLATIONS } from '../translations';
+import { useData } from '../contexts/DataContext';
 
 interface RosarioIslandsProps {
   language: Language;
@@ -9,54 +11,7 @@ interface RosarioIslandsProps {
 
 const RosarioIslands: React.FC<RosarioIslandsProps> = ({ language }) => {
   const t = TRANSLATIONS[language].rosario;
-
-  // Real market data with visually accurate representation images
-  const islands = [
-    {
-      id: 'bora-bora',
-      name: 'Bora Bora Beach Club',
-      vibe: 'Party & Exclusive',
-      price: 95,
-      rating: 4.8,
-      // Vibe: Beach beds, thatch roofs, party atmosphere (Visual proxy for Bora Bora Cartagena)
-      image: 'https://images.unsplash.com/photo-1544473244-f6895e672d64?q=80&w=800&auto=format&fit=crop', 
-      tags: ['DJ Live', 'Day Bed', 'Welcome Drink'],
-      description: language === 'es' ? 'El club más famoso. Fiesta, música house y ambiente vibrante.' : 'The most famous club. Party, house music, and vibrant atmosphere.'
-    },
-    {
-      id: 'playa-blanca',
-      name: 'Playa Blanca (Barú)',
-      vibe: 'Popular & Blue Water',
-      price: 35,
-      rating: 4.2,
-      // Vibe: Intense turquoise water and white sand (Visual proxy for Baru)
-      image: 'https://images.unsplash.com/photo-1583362306778-9e7f86127117?q=80&w=800&auto=format&fit=crop', 
-      tags: ['Budget Friendly', 'Crystal Water', 'Local Food'],
-      description: language === 'es' ? 'La playa más azul y popular. Ideal para presupuestos ajustados.' : 'The bluest and most popular beach. Ideal for tight budgets.'
-    },
-    {
-      id: 'cholon',
-      name: 'Cholón Party Boat',
-      vibe: 'Yacht Party',
-      price: 85,
-      rating: 4.7,
-      // Vibe: Boats gathering, party in the water (Visual proxy for Cholon)
-      image: 'https://images.unsplash.com/photo-1563294622-c3576cc09307?q=80&w=800&auto=format&fit=crop', 
-      tags: ['Young Crowd', 'Boat Party', 'Drinks'],
-      description: language === 'es' ? 'La locura en el mar. Lanchas, música a todo volumen y fiesta en el agua.' : 'Madness on the sea. Boats, loud music, and partying in the water.'
-    },
-    {
-      id: 'isla-encanto',
-      name: 'Isla Encanto / Luxury',
-      vibe: 'Relax & Premium',
-      price: 110,
-      rating: 4.9,
-      // Vibe: Luxury pool next to the beach (Visual proxy for Eco Resorts like Isla Encanto/Gente de Mar)
-      image: 'https://images.unsplash.com/photo-1540541338287-41700207dee6?q=80&w=800&auto=format&fit=crop', 
-      tags: ['Pool', 'Buffet', 'Private Beach'],
-      description: language === 'es' ? 'Desconéctate en un resort ecológico de lujo con piscina y playa privada.' : 'Disconnect in a luxury eco-resort with pool and private beach.'
-    }
-  ];
+  const { islands } = useData();
 
   return (
     <section className="py-20 bg-white relative overflow-hidden">
@@ -106,7 +61,9 @@ const RosarioIslands: React.FC<RosarioIslandsProps> = ({ language }) => {
 
               {/* Details Body */}
               <div className="p-6 flex-grow flex flex-col">
-                <p className="text-gray-600 text-sm mb-4 line-clamp-3">{item.description}</p>
+                <p className="text-gray-600 text-sm mb-4 line-clamp-3">
+                  {language === 'es' ? item.descriptionEs : item.descriptionEn}
+                </p>
                 
                 {/* Features */}
                 <div className="flex flex-wrap gap-2 mb-6">
