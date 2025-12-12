@@ -43,8 +43,8 @@ function App() {
       {/* 1. Hero Header */}
       <Hero language={language} />
       
-      {/* 4. Why Choose Us */}
-      <WhyChooseUs />
+      {/* 4. Why Choose Us (Includes Mission/Vision) */}
+      <WhyChooseUs language={language} />
 
       {/* NEW: AI Smart Planner V2 */}
       <SmartPlanner language={language} />

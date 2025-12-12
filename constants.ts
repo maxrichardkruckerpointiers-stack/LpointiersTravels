@@ -3,66 +3,70 @@ import { Tour, Testimonial, MapMarker } from './types';
 export const TOURS: Tour[] = [
   {
     id: '1',
-    title: 'Historic Walled City Walk',
+    title: 'Cartagena Colonial & Legendaria',
     category: 'Cultural',
-    duration: '3 Hours',
-    price: 59, // Was 45
+    duration: '4 Horas',
+    price: 45, // Adjusted for market competitiveness (High volume, lower margin strategy)
     rating: 4.9,
-    reviews: 1240,
-    image: 'https://picsum.photos/800/600?random=1',
-    description: 'Discover the secrets of the Spanish colonial era, walking through colorful streets and historic plazas.',
-    highlights: ['San Felipe Castle', 'Clock Tower', 'Local Historian Guide'],
+    reviews: 1450,
+    // Premium image of Palenqueras/Streets
+    image: 'https://images.unsplash.com/photo-1583997052308-5645f7945d78?q=80&w=800&auto=format&fit=crop',
+    description: 'Sumérgete en la historia. Una experiencia única caminando por las calles amuralladas, descubriendo leyendas coloniales y arquitectura viva.',
+    highlights: ['Guía Historiador', 'Degustación de Café', 'Entrada a Museos'],
     ecoScore: {
       level: 'High',
-      tags: ['Walking Tour', 'Zero Carbon', 'Supports Local Heritage']
+      tags: ['Cultura Local', 'Cero Plástico', 'Apoyo Comunitario']
     }
   },
   {
     id: '2',
-    title: 'Rosario Islands Snorkel',
+    title: 'Paraíso Islas del Rosario VIP',
     category: 'Adventure',
-    duration: '8 Hours',
-    price: 109, // Was 85
+    duration: 'Día Completo',
+    price: 95, // Psychological pricing (under 100)
     rating: 4.8,
-    reviews: 856,
-    image: 'https://picsum.photos/800/600?random=2',
-    description: 'Escape to the crystal clear waters of the Caribbean. Snorkel in coral reefs and relax on white sand beaches.',
-    highlights: ['Private Boat', 'Snorkeling Gear', 'Fresh Seafood Lunch'],
+    reviews: 920,
+    // Crystal clear water image
+    image: 'https://images.unsplash.com/photo-1590523741831-ab7e8b8f9c7f?q=80&w=800&auto=format&fit=crop',
+    description: 'Navega en lancha deportiva hacia aguas cristalinas. Snorkel en arrecifes vivos, playa privada y almuerzo gourmet caribeño incluido.',
+    highlights: ['Lancha Rápida', 'Snorkel Guiado', 'Barra Abierta'],
     ecoScore: {
       level: 'Medium',
-      tags: ['Reef Protection Fee', 'No Single-use Plastics']
+      tags: ['Protección de Arrecifes', 'Turismo Responsable']
     }
   },
   {
     id: '3',
-    title: 'Street Food Safari',
+    title: 'Gastro-Tour: Sabores del Caribe',
     category: 'Gastronomic',
-    duration: '4 Hours',
-    price: 69, // Was 55
+    duration: '3.5 Horas',
+    price: 65, // Competitive pricing for food tours
     rating: 5.0,
-    reviews: 432,
-    image: 'https://picsum.photos/800/600?random=3',
-    description: 'Taste the real Cartagena. From buttery arepas to fresh ceviche, eat your way through the local markets.',
-    highlights: ['5 Food Tastings', 'Bazurto Market', 'Exotic Fruits'],
+    reviews: 510,
+    // Vibrant food image
+    image: 'https://images.unsplash.com/photo-1574567295843-9878dc137c87?q=80&w=800&auto=format&fit=crop',
+    description: 'Una explosión de sabor. Desde arepas de huevo hasta ceviches frescos en el mercado. Descubre por qué nuestra cocina es inolvidable.',
+    highlights: ['7 Paradas de Comida', 'Mercado Bazurto', 'Bebidas Exóticas'],
     ecoScore: {
       level: 'High',
-      tags: ['100% Local Vendors', 'Food Waste Reduction']
+      tags: ['Ingredientes Locales', 'Apoyo a Vendedores']
     }
   },
   {
     id: '4',
-    title: 'Sunset Sailing Experience',
+    title: 'Atardecer Mágico en Velero',
     category: 'Family',
-    duration: '2 Hours',
-    price: 85, // Was 65
+    duration: '2 Horas',
+    price: 79, // Adjusted from 85 for better value perception
     rating: 4.9,
-    reviews: 210,
-    image: 'https://picsum.photos/800/600?random=4',
-    description: 'A magical evening sailing around the bay. Perfect for families and couples looking for the best view of the skyline.',
-    highlights: ['Open Bar', 'Live Music', 'Sunset Views'],
+    reviews: 340,
+    // Sunset sailing image
+    image: 'https://images.unsplash.com/photo-1566415606622-a988184d0092?q=80&w=800&auto=format&fit=crop',
+    description: 'La mejor vista de la ciudad moderna y antigua mientras el sol se pone. Cócteles, buena música y un ambiente de alta reputación.',
+    highlights: ['Cóctel de Bienvenida', 'Música en Vivo', 'Vistas Panorámicas'],
     ecoScore: {
       level: 'Medium',
-      tags: ['Wind Powered', 'Ocean Conservation Donation']
+      tags: ['Energía Eólica', 'Conservación Oceánica']
     }
   }
 ];
@@ -70,36 +74,36 @@ export const TOURS: Tour[] = [
 export const TESTIMONIALS: Testimonial[] = [
   {
     id: 't1',
-    name: 'Sarah Jenkins',
-    location: 'New York, USA',
+    name: 'Emily Thompson',
+    location: 'London, UK',
     rating: 5,
-    text: "The best way to see Cartagena! Our guide was knowledgeable and funny. The street food tour is a MUST.",
-    avatar: 'https://picsum.photos/100/100?random=10',
+    text: "EcoExplorer Mundo gave us the most unforgettable experience. The attention to detail and the price were unbeatable.",
+    avatar: 'https://randomuser.me/api/portraits/women/44.jpg',
     platform: 'TripAdvisor'
   },
   {
     id: 't2',
-    name: 'Marco Rossi',
-    location: 'Rome, Italy',
+    name: 'Carlos Mendez',
+    location: 'Mexico City',
     rating: 5,
-    text: "Incredible organization. The boat to Rosario Islands was punctual and the snorkeling was breathtaking.",
-    avatar: 'https://picsum.photos/100/100?random=11',
+    text: "La reputación de esta agencia es merecida. Calidad top y guías que realmente aman su ciudad. ¡Volveré!",
+    avatar: 'https://randomuser.me/api/portraits/men/32.jpg',
     platform: 'Google'
   },
   {
     id: 't3',
-    name: 'Elena Gomez',
-    location: 'Madrid, Spain',
+    name: 'Sophie Dubois',
+    location: 'Paris, France',
     rating: 5,
-    text: "We felt so safe and welcomed. A perfect mix of history and fun. Highly recommend the walking tour.",
-    avatar: 'https://picsum.photos/100/100?random=12',
+    text: "Unique experiences you can't find elsewhere. The eco-focus and connection with locals made it special.",
+    avatar: 'https://randomuser.me/api/portraits/women/68.jpg',
     platform: 'TripAdvisor'
   }
 ];
 
 export const MAP_MARKERS: MapMarker[] = [
-  { id: 'm1', x: 45, y: 30, title: 'Walled City', description: 'The historic heart.', image: 'https://picsum.photos/200/150?random=20' },
-  { id: 'm2', x: 20, y: 60, title: 'Bocagrande', description: 'Modern skyline & beaches.', image: 'https://picsum.photos/200/150?random=21' },
-  { id: 'm3', x: 70, y: 25, title: 'San Felipe Castle', description: 'The grand fortress.', image: 'https://picsum.photos/200/150?random=22' },
-  { id: 'm4', x: 55, y: 50, title: 'Getsemaní', description: 'Street art & culture.', image: 'https://picsum.photos/200/150?random=23' },
+  { id: 'm1', x: 45, y: 30, title: 'Ciudad Amurallada', description: 'Historia viva.', image: 'https://images.unsplash.com/photo-1583997052308-5645f7945d78?q=80&w=200&auto=format&fit=crop' },
+  { id: 'm2', x: 20, y: 60, title: 'Bocagrande', description: 'Playas y modernidad.', image: 'https://images.unsplash.com/photo-1569420268578-e5db3a3a4128?q=80&w=200&auto=format&fit=crop' },
+  { id: 'm3', x: 70, y: 25, title: 'Castillo San Felipe', description: 'La gran fortaleza.', image: 'https://images.unsplash.com/photo-1629833590742-02c31e428df1?q=80&w=200&auto=format&fit=crop' },
+  { id: 'm4', x: 55, y: 50, title: 'Getsemaní', description: 'Arte y cultura.', image: 'https://images.unsplash.com/photo-1624657929427-0233b821421c?q=80&w=200&auto=format&fit=crop' },
 ];

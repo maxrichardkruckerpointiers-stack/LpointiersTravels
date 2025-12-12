@@ -1,5 +1,5 @@
 import React from 'react';
-import { Facebook, Instagram, Twitter } from 'lucide-react';
+import { Facebook, Instagram, Twitter, Globe } from 'lucide-react';
 
 const Footer: React.FC = () => {
   return (
@@ -7,19 +7,22 @@ const Footer: React.FC = () => {
       <div className="container">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           <div className="col-span-1 md:col-span-2">
-            <h3 className="text-2xl font-serif font-bold mb-4">Lpointiers<span className="text-secondary"> Travels Tours</span></h3>
+            <h3 className="text-2xl font-serif font-bold mb-4 flex items-center gap-2">
+              <Globe size={24} className="text-secondary" />
+              EcoExplorer<span className="text-secondary"> Mundo</span>
+            </h3>
             <p className="text-gray-300 max-w-sm">
-              Connecting travelers with the authentic soul of Cartagena through sustainable, locally-led tourism experiences.
+              Creating unforgettable memories in Cartagena. High quality, competitive prices, and a reputation built on trust and unique experiences.
             </p>
           </div>
           
           <div>
             <h4 className="font-bold mb-4">Quick Links</h4>
             <ul className="space-y-2 text-gray-400 text-sm">
-              <li><a href="#" className="hover:text-secondary">About Us</a></li>
+              <li><a href="#philosophy" className="hover:text-secondary">Our Philosophy</a></li>
               <li><a href="#experiences" className="hover:text-secondary">Tours</a></li>
               <li><a href="#reviews" className="hover:text-secondary">Reviews</a></li>
-              <li><a href="#" className="hover:text-secondary">Privacy Policy</a></li>
+              <li><a href="#" className="hover:text-secondary">Terms & Conditions</a></li>
             </ul>
           </div>
           
@@ -40,7 +43,7 @@ const Footer: React.FC = () => {
         </div>
         
         <div className="border-t border-primary pt-8 text-center text-sm text-gray-500">
-          &copy; {new Date().getFullYear()} Lpointiers Travels Tours. All rights reserved.
+          &copy; {new Date().getFullYear()} EcoExplorer Mundo. All rights reserved.
         </div>
       </div>
     </footer>

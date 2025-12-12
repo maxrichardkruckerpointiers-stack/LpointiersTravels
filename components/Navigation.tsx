@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Phone, Sparkles } from 'lucide-react';
+import { Menu, X, Phone, Sparkles, Globe } from 'lucide-react';
 import { Language } from '../types';
 import { TRANSLATIONS } from '../translations';
 
@@ -23,7 +23,7 @@ const Navigation: React.FC<NavigationProps> = ({ language }) => {
   const navLinks = [
     { name: t.experiences, href: '#experiences' },
     { name: t.planner, href: '#ai-planner', special: true },
-    { name: t.whyUs, href: '#why-us' },
+    { name: t.whyUs, href: '#philosophy' },
     { name: t.reviews, href: '#reviews' },
     { name: t.contact, href: '#contact' },
   ];
@@ -32,9 +32,10 @@ const Navigation: React.FC<NavigationProps> = ({ language }) => {
     <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white/95 backdrop-blur-md shadow-lg py-3' : 'bg-transparent py-5'}`}>
       <div className="container">
         <div className="flex justify-between items-center">
-          <div className="flex-shrink-0 flex items-center">
+          <div className="flex-shrink-0 flex items-center gap-2">
+            <Globe size={24} className={scrolled ? 'text-secondary' : 'text-white'} />
             <span className={`font-serif font-bold text-xl md:text-2xl ${scrolled ? 'text-primary-dark' : 'text-white'}`}>
-              Lpointiers<span className="text-secondary"> Travels Tours</span>
+              EcoExplorer<span className="text-secondary"> Mundo</span>
             </span>
           </div>
           
