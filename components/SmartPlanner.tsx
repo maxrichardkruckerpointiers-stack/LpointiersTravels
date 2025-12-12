@@ -1,11 +1,36 @@
 import React, { useState } from 'react';
-import { Sparkles, Map, Calendar, Users, DollarSign, Loader2 } from 'lucide-react';
-import { PlannerState } from '../types';
+import { Sparkles, Map, Calendar, Users, DollarSign, Loader2, Clock, Tag } from 'lucide-react';
+import { PlannerState, Language, ItineraryPlan } from '../types';
 import { generateSmartItinerary } from '../services/plannerService';
+import { TRANSLATIONS } from '../translations';
 
-const SmartPlanner: React.FC = () => {
+interface SmartPlannerProps {
+  language: Language;
+}
+
+// Helper to get high-quality images based on category/location
+const getImageForActivity = (category: string, location: string): string => {
+  // High quality Unsplash IDs for Cartagena
+  const images: Record<string, string> = {
+    'Beach': 'https://images.unsplash.com/photo-1596436807738-f689b6e82a45?q=80&w=800&auto=format&fit=crop', // Beach
+    'History': 'https://images.unsplash.com/photo-1629833590742-02c31e428df1?q=80&w=800&auto=format&fit=crop', // Colonial
+    'Food': 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=800&auto=format&fit=crop', // Food
+    'Party': 'https://images.unsplash.com/photo-1542114633-289b52a550eb?q=80&w=800&auto=format&fit=crop', // Drinks/Night
+    'Nature': 'https://images.unsplash.com/photo-1582791694766-3d3cb0152439?q=80&w=800&auto=format&fit=crop', // Mangroves/Nature
+  };
+
+  // Simple keyword matching override
+  const loc = location.toLowerCase();
+  if (loc.includes('rosario') || loc.includes('cholon') || loc.includes('island')) return images['Beach'];
+  if (loc.includes('castle') || loc.includes('felipe') || loc.includes('walled')) return images['History'];
+  
+  return images[category] || images['History'];
+};
+
+const SmartPlanner: React.FC<SmartPlannerProps> = ({ language }) => {
+  const t = TRANSLATIONS[language].planner;
   const [loading, setLoading] = useState(false);
-  const [result, setResult] = useState<string | null>(null);
+  const [plan, setPlan] = useState<ItineraryPlan | null>(null);
   const [preferences, setPreferences] = useState<PlannerState>({
     vibe: 'Relaxing & Beach',
     days: '3 Days',
@@ -15,8 +40,8 @@ const SmartPlanner: React.FC = () => {
 
   const handleGenerate = async () => {
     setLoading(true);
-    const plan = await generateSmartItinerary(preferences);
-    setResult(plan);
+    const result = await generateSmartItinerary(preferences, language);
+    setPlan(result);
     setLoading(false);
   };
 
@@ -26,7 +51,7 @@ const SmartPlanner: React.FC = () => {
 
   return (
     <section id="ai-planner" className="py-20 bg-gradient-to-br from-emerald-900 via-emerald-800 to-emerald-950 text-white relative overflow-hidden">
-      {/* Abstract Shapes */}
+      {/* Background Decor */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden opacity-20 pointer-events-none">
         <div className="absolute top-10 left-10 w-64 h-64 bg-secondary rounded-full filter blur-3xl"></div>
         <div className="absolute bottom-10 right-10 w-96 h-96 bg-blue-500 rounded-full filter blur-3xl"></div>
@@ -35,74 +60,72 @@ const SmartPlanner: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full text-secondary-light font-bold mb-4 border border-white/10">
-            <Sparkles size={18} /> AI-Powered Travel Agent
+            <Sparkles size={18} /> {t.badge}
           </div>
-          <h2 className="text-3xl sm:text-5xl font-serif font-bold mb-6">Create Your Perfect <br/>Cartagena Itinerary</h2>
+          <h2 className="text-3xl sm:text-5xl font-serif font-bold mb-6">{t.title}</h2>
           <p className="text-gray-300 max-w-2xl mx-auto text-lg">
-            Tell us your style, and our AI will craft a personalized plan including the best islands, cultural spots, and entertainment in seconds.
+            {t.subtitle}
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           
-          {/* Controls */}
-          <div className="bg-white/10 backdrop-blur-md p-8 rounded-3xl border border-white/20 shadow-xl">
-            <h3 className="text-xl font-bold mb-6 flex items-center gap-2"><Map size={24} className="text-secondary" /> Trip Preferences</h3>
+          {/* Controls - Takes 4 columns */}
+          <div className="lg:col-span-4 bg-white/10 backdrop-blur-md p-6 sm:p-8 rounded-3xl border border-white/20 shadow-xl">
+            <h3 className="text-xl font-bold mb-6 flex items-center gap-2"><Map size={24} className="text-secondary" /> {language === 'es' ? 'Preferencias' : 'Preferences'}</h3>
             
             <div className="space-y-6">
               <div>
                 <label className="block text-sm font-medium text-gray-300 mb-2 flex items-center gap-2">
-                   <Users size={16} /> Who is traveling?
+                   <Users size={16} /> {t.labelGroup}
                 </label>
-                <div className="grid grid-cols-3 gap-2">
-                  {['Solo', 'Couple', 'Group/Friends', 'Family'].map(opt => (
-                    <button
-                      key={opt}
-                      onClick={() => handleChange('group', opt)}
-                      className={`py-2 px-3 rounded-lg text-sm transition-all ${preferences.group === opt ? 'bg-secondary text-white font-bold' : 'bg-white/5 hover:bg-white/10'}`}
-                    >
-                      {opt}
-                    </button>
-                  ))}
-                </div>
+                <select 
+                  className="w-full bg-white/5 border border-white/20 rounded-lg p-3 text-white focus:ring-2 focus:ring-secondary outline-none"
+                  value={preferences.group}
+                  onChange={(e) => handleChange('group', e.target.value)}
+                >
+                  <option className="text-gray-900" value="Solo">Solo</option>
+                  <option className="text-gray-900" value="Couple">Couple / Pareja</option>
+                  <option className="text-gray-900" value="Group/Friends">Friends / Amigos</option>
+                  <option className="text-gray-900" value="Family">Family / Familia</option>
+                </select>
               </div>
 
               <div>
                 <label className="block text-sm font-medium text-gray-300 mb-2 flex items-center gap-2">
-                   <Calendar size={16} /> Duration
+                   <Calendar size={16} /> {t.labelDuration}
                 </label>
                 <select 
                   className="w-full bg-white/5 border border-white/20 rounded-lg p-3 text-white focus:ring-2 focus:ring-secondary outline-none"
                   value={preferences.days}
                   onChange={(e) => handleChange('days', e.target.value)}
                 >
-                  <option className="text-gray-900" value="1 Day">1 Day (Quick Stop)</option>
-                  <option className="text-gray-900" value="3 Days">3 Days (Weekend)</option>
-                  <option className="text-gray-900" value="5 Days">5 Days (Full Experience)</option>
-                  <option className="text-gray-900" value="7 Days">7 Days (Deep Dive)</option>
+                  <option className="text-gray-900" value="1 Day">1 Day</option>
+                  <option className="text-gray-900" value="3 Days">3 Days</option>
+                  <option className="text-gray-900" value="5 Days">5 Days</option>
+                  <option className="text-gray-900" value="7 Days">7 Days</option>
                 </select>
               </div>
 
               <div>
                 <label className="block text-sm font-medium text-gray-300 mb-2 flex items-center gap-2">
-                   <Sparkles size={16} /> Vibe & Entertainment
+                   <Sparkles size={16} /> {t.labelVibe}
                 </label>
                 <select 
                   className="w-full bg-white/5 border border-white/20 rounded-lg p-3 text-white focus:ring-2 focus:ring-secondary outline-none"
                   value={preferences.vibe}
                   onChange={(e) => handleChange('vibe', e.target.value)}
                 >
-                  <option className="text-gray-900" value="Relaxing & Beach">Relaxing & Beach (Islands)</option>
-                  <option className="text-gray-900" value="Party & Nightlife">Party & Nightlife (Cholón/Clubs)</option>
-                  <option className="text-gray-900" value="History & Culture">History & Culture (Walled City)</option>
+                  <option className="text-gray-900" value="Relaxing & Beach">Relaxing & Beach</option>
+                  <option className="text-gray-900" value="Party & Nightlife">Party & Nightlife</option>
+                  <option className="text-gray-900" value="History & Culture">History & Culture</option>
                   <option className="text-gray-900" value="Luxury & Gastronomy">Luxury & Gastronomy</option>
-                  <option className="text-gray-900" value="Eco-Friendly & Nature">Eco-Friendly & Nature</option>
                 </select>
               </div>
 
               <div>
                 <label className="block text-sm font-medium text-gray-300 mb-2 flex items-center gap-2">
-                   <DollarSign size={16} /> Budget Level
+                   <DollarSign size={16} /> {t.labelBudget}
                 </label>
                 <div className="flex gap-4">
                   {['Budget', 'Standard', 'Luxury'].map(opt => (
@@ -126,45 +149,66 @@ const SmartPlanner: React.FC = () => {
                 className="w-full mt-4 bg-gradient-to-r from-secondary to-orange-600 hover:from-secondary-dark hover:to-orange-700 text-white font-bold py-4 rounded-xl transition-all shadow-lg hover:shadow-orange-500/30 flex items-center justify-center gap-2 disabled:opacity-70"
               >
                 {loading ? <Loader2 className="animate-spin" /> : <Sparkles />} 
-                {loading ? 'Designing Plan...' : 'Generate My Dream Plan'}
+                {loading ? t.btnLoading : t.btnGenerate}
               </button>
             </div>
           </div>
 
-          {/* Result Display */}
-          <div className="relative min-h-[400px] flex items-center justify-center">
-            {!result && !loading && (
-              <div className="text-center opacity-50">
-                <div className="w-24 h-24 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-4">
+          {/* Result Display - Takes 8 columns */}
+          <div className="lg:col-span-8 min-h-[400px] flex items-center justify-center">
+            {!plan && !loading && (
+              <div className="text-center opacity-50 p-12 border-2 border-dashed border-white/20 rounded-3xl w-full h-full flex flex-col items-center justify-center">
+                <div className="w-24 h-24 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-4 animate-pulse-slow">
                   <Map size={40} />
                 </div>
-                <p>Your personalized itinerary will appear here.</p>
+                <p className="text-xl">
+                  {language === 'es' 
+                    ? 'Tu itinerario personalizado aparecerá aquí.' 
+                    : 'Your personalized itinerary will appear here.'}
+                </p>
               </div>
             )}
 
-            {result && !loading && (
-              <div className="bg-white text-gray-800 p-8 rounded-3xl shadow-2xl w-full animate-fade-in-up border-4 border-white/50">
-                 <div className="flex justify-between items-start mb-4">
-                    <h3 className="text-2xl font-serif font-bold text-emerald-900">Your Cartagena Plan</h3>
-                    <span className="bg-emerald-100 text-emerald-800 text-xs font-bold px-2 py-1 rounded-md">AI Generated</span>
+            {plan && !loading && (
+              <div className="w-full animate-fade-in-up space-y-6">
+                 {/* Header of Plan */}
+                 <div className="bg-white/95 text-emerald-950 p-6 rounded-2xl shadow-xl">
+                    <h3 className="text-2xl font-serif font-bold mb-2">{plan.title}</h3>
+                    <p className="text-gray-600">{plan.summary}</p>
                  </div>
-                 <div className="prose prose-emerald prose-sm max-w-none overflow-y-auto max-h-[400px] pr-2">
-                    {result.split('\n').map((line, i) => (
-                      <p key={i} className="mb-2 leading-relaxed">
-                        {line.startsWith('-') || line.startsWith('*') ? (
-                          <span className="block ml-4 text-gray-700">• {line.replace(/^[-*]\s/, '')}</span>
-                        ) : line.startsWith('#') ? (
-                          <span className="block text-lg font-bold text-secondary mt-4 mb-2">{line.replace(/^[#]+\s/, '')}</span>
-                        ) : (
-                          line
-                        )}
-                      </p>
+
+                 {/* Activities Grid */}
+                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-h-[600px] overflow-y-auto pr-2 custom-scrollbar">
+                    {plan.activities.map((item, idx) => (
+                      <div key={idx} className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow flex flex-col">
+                        <div className="h-40 overflow-hidden relative">
+                           <img 
+                              src={getImageForActivity(item.category, item.location)} 
+                              alt={item.activity}
+                              className="w-full h-full object-cover"
+                           />
+                           <div className="absolute top-2 right-2 bg-black/70 text-white text-xs font-bold px-2 py-1 rounded backdrop-blur-sm">
+                              {item.priceEstimate}
+                           </div>
+                           <div className="absolute bottom-2 left-2 bg-secondary text-white text-xs font-bold px-2 py-1 rounded">
+                              {item.category}
+                           </div>
+                        </div>
+                        <div className="p-4 flex-grow flex flex-col">
+                           <div className="flex items-center text-xs text-orange-600 font-bold mb-1 uppercase tracking-wide">
+                              <Clock size={12} className="mr-1" /> {item.time}
+                           </div>
+                           <h4 className="font-bold text-gray-900 mb-1 leading-tight">{item.activity}</h4>
+                           <p className="text-xs text-emerald-700 font-semibold mb-2 flex items-center">
+                              <Map size={12} className="mr-1" /> {item.location}
+                           </p>
+                           <p className="text-gray-600 text-sm line-clamp-3 mb-4">{item.description}</p>
+                           <a href="#contact" className="mt-auto block text-center w-full py-2 border border-emerald-900 text-emerald-900 rounded-lg text-sm font-bold hover:bg-emerald-900 hover:text-white transition-colors">
+                              {t.bookPlan}
+                           </a>
+                        </div>
+                      </div>
                     ))}
-                 </div>
-                 <div className="mt-6 pt-6 border-t border-gray-100">
-                    <a href="#contact" className="block w-full text-center bg-emerald-900 text-white font-bold py-3 rounded-lg hover:bg-emerald-800 transition-colors">
-                      Book This Plan Now
-                    </a>
                  </div>
               </div>
             )}

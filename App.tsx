@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Navigation from './components/Navigation';
 import Hero from './components/Hero';
 import FeaturedTours from './components/FeaturedTours';
@@ -10,54 +10,59 @@ import ReservationForm from './components/ReservationForm';
 import Footer from './components/Footer';
 import AiChatAssistant from './components/AiChatAssistant';
 import SmartPlanner from './components/SmartPlanner';
+import { Language } from './types';
 
 function App() {
-  
-  // 10. Performance Analytics Mock
+  const [language, setLanguage] = useState<Language>('en');
+
+  // Detect Language
   useEffect(() => {
-    // Determine user flow source (mock)
+    const userLang = navigator.language || navigator.languages[0];
+    if (userLang.startsWith('es')) {
+      setLanguage('es');
+      console.log('[App] Language detected: Spanish');
+    } else {
+      console.log('[App] Language detected: English');
+    }
+
+    // Analytics Mock
     const referrer = document.referrer;
     console.log(`[Analytics] Visit started. Referrer: ${referrer || 'Direct'}`);
-
-    // Track scroll depth or time on page could go here
-    return () => {
-      console.log('[Analytics] Visit ended.');
-    };
   }, []);
 
   return (
     <div className="antialiased text-gray-900 font-sans">
       {/* 2. Minimalist Navigation */}
-      <Navigation />
+      <Navigation language={language} />
       
       {/* 1. Hero Header */}
-      <Hero />
+      <Hero language={language} />
       
-      {/* 4. Why Choose Us (High conversion impact, placed early) */}
+      {/* 4. Why Choose Us */}
       <WhyChooseUs />
 
-      {/* NEW: AI Smart Planner */}
-      <SmartPlanner />
+      {/* NEW: AI Smart Planner V2 */}
+      <SmartPlanner language={language} />
       
-      {/* 3. Featured Tours (Now with Eco-Badges) */}
+      {/* 3. Featured Tours */}
       <FeaturedTours />
       
-      {/* 5. Testimonials & Social Proof */}
+      {/* 5. Testimonials */}
       <Testimonials />
       
       {/* 8. Interactive Tour Map */}
       <InteractiveMap />
       
-      {/* 6. Practical Tour Information */}
+      {/* 6. Practical Info */}
       <PracticalInfo />
       
-      {/* 7. Reservation/Lead Capture */}
+      {/* 7. Reservation Form */}
       <ReservationForm />
       
       {/* Footer */}
       <Footer />
 
-      {/* Bonus: AI Chat for conversion optimization */}
+      {/* AI Chat */}
       <AiChatAssistant />
     </div>
   );

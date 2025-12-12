@@ -1,9 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Phone, Sparkles } from 'lucide-react';
+import { Language } from '../types';
+import { TRANSLATIONS } from '../translations';
 
-const Navigation: React.FC = () => {
+interface NavigationProps {
+  language: Language;
+}
+
+const Navigation: React.FC<NavigationProps> = ({ language }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const t = TRANSLATIONS[language].nav;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -14,11 +21,11 @@ const Navigation: React.FC = () => {
   }, []);
 
   const navLinks = [
-    { name: 'Experiences', href: '#experiences' },
-    { name: 'AI Planner', href: '#ai-planner', special: true },
-    { name: 'Why Us', href: '#why-us' },
-    { name: 'Reviews', href: '#reviews' },
-    { name: 'Contact', href: '#contact' },
+    { name: t.experiences, href: '#experiences' },
+    { name: t.planner, href: '#ai-planner', special: true },
+    { name: t.whyUs, href: '#why-us' },
+    { name: t.reviews, href: '#reviews' },
+    { name: t.contact, href: '#contact' },
   ];
 
   return (
@@ -51,7 +58,7 @@ const Navigation: React.FC = () => {
               href="#contact" 
               className="bg-secondary hover:bg-secondary-dark text-white px-5 py-2.5 rounded-full font-bold transition-transform transform hover:scale-105 shadow-md flex items-center gap-2"
             >
-              <Phone size={16} /> Book Now
+              <Phone size={16} /> {t.book}
             </a>
           </div>
 
@@ -84,7 +91,7 @@ const Navigation: React.FC = () => {
             </a>
           ))}
           <a href="#contact" className="mt-4 block w-full text-center bg-primary text-white font-bold py-3 rounded-lg" onClick={() => setIsOpen(false)}>
-            Book Your Adventure
+            {t.book}
           </a>
         </div>
       </div>

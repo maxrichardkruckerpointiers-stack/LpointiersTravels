@@ -1,52 +1,72 @@
-import { GoogleGenAI } from "@google/genai";
-import { PlannerState } from "../types";
+import { GoogleGenAI, Type, Schema } from "@google/genai";
+import { PlannerState, Language, ItineraryPlan } from "../types";
 
 // @ts-ignore
 const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
-const PLANNER_SYSTEM_INSTRUCTION = `
-You are an elite travel planner for "Lpointiers Travels Tours". 
-Create a short, exciting itinerary based on the user's input.
-Focus on suggesting specific locations in Cartagena like:
-- Rosario Islands (Islas del Rosario)
-- Cholón (Party island)
-- Playa Blanca / Barú
-- Tierra Bomba
-- The Walled City (Ciudad Amurallada)
-- Getsemaní
+const responseSchema: Schema = {
+  type: Type.OBJECT,
+  properties: {
+    title: { type: Type.STRING, description: "A catchy title for the trip" },
+    summary: { type: Type.STRING, description: "A 2 sentence summary of the vibe" },
+    activities: {
+      type: Type.ARRAY,
+      items: {
+        type: Type.OBJECT,
+        properties: {
+          time: { type: Type.STRING, description: "Morning, Afternoon, or specific time" },
+          activity: { type: Type.STRING, description: "Name of the activity" },
+          location: { type: Type.STRING, description: "Specific place name (e.g. Playa Blanca, Cafe del Mar)" },
+          description: { type: Type.STRING, description: "Short appealing description" },
+          priceEstimate: { type: Type.STRING, description: "Estimated price per person (e.g. $50 USD or $200.000 COP). Be realistic for tourists." },
+          category: { type: Type.STRING, enum: ["Beach", "History", "Food", "Party", "Nature"] }
+        },
+        required: ["time", "activity", "location", "description", "priceEstimate", "category"]
+      }
+    }
+  },
+  required: ["title", "summary", "activities"]
+};
 
-Format the output using simple Markdown (bullet points, bold text).
-Keep it under 200 words.
-ALWAYS finish by recommending the user clicks "Book Now" to make this plan a reality.
-`;
-
-export const generateSmartItinerary = async (preferences: PlannerState): Promise<string> => {
+export const generateSmartItinerary = async (preferences: PlannerState, lang: Language): Promise<ItineraryPlan | null> => {
   // @ts-ignore
   if (!process.env.API_KEY) {
-    return "## System Offline\n\nPlease check your API Key configuration to use the Smart Planner.";
+    console.error("API Key missing");
+    return null;
   }
+
+  const currency = lang === 'es' ? 'COP (Colombian Pesos)' : 'USD';
+  const languageName = lang === 'es' ? 'Spanish' : 'English';
 
   try {
     const prompt = `
-      Create a ${preferences.days} itinerary for a ${preferences.group} group.
+      Create a ${preferences.days} itinerary for a ${preferences.group} group in Cartagena, Colombia.
       Vibe: ${preferences.vibe}.
       Budget Level: ${preferences.budget}.
+      Language: Output strictly in ${languageName}.
+      Currency: Show prices in ${currency}.
       
-      Include specific entertainment plans, islands, and sustainable options if possible.
+      Suggest specific real places (Islands, Restaurants, Squares).
+      For 'priceEstimate', use standard tourist market rates for 2024/2025.
     `;
 
     const response = await ai.models.generateContent({
       model: 'gemini-2.5-flash',
       contents: prompt,
       config: {
-        systemInstruction: PLANNER_SYSTEM_INSTRUCTION,
-        temperature: 0.8,
+        responseMimeType: 'application/json',
+        responseSchema: responseSchema,
+        systemInstruction: "You are an expert local tour guide for Cartagena. Be realistic with prices.",
+        temperature: 0.7,
       }
     });
 
-    return response.text || "I couldn't generate a plan right now. Please try again.";
+    if (response.text) {
+      return JSON.parse(response.text) as ItineraryPlan;
+    }
+    return null;
   } catch (error) {
     console.error("Planner Error:", error);
-    return "Error connecting to the travel brain. Please try again later.";
+    return null;
   }
 };

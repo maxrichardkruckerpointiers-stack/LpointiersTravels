@@ -1,7 +1,15 @@
 import React from 'react';
 import { Play } from 'lucide-react';
+import { Language } from '../types';
+import { TRANSLATIONS } from '../translations';
 
-const Hero: React.FC = () => {
+interface HeroProps {
+  language: Language;
+}
+
+const Hero: React.FC<HeroProps> = ({ language }) => {
+  const t = TRANSLATIONS[language].hero;
+
   return (
     <section className="relative h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image: Real Cartagena Colonial Street */}
@@ -17,16 +25,16 @@ const Hero: React.FC = () => {
 
       <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto mt-16">
         <span className="inline-block py-1 px-3 rounded-full bg-orange-500/20 text-orange-200 border border-orange-400/30 backdrop-blur-sm text-sm font-semibold tracking-wider mb-6 animate-fade-in-up">
-          #1 Rated Tours in Colombia with Lpointiers
+          {t.badge}
         </span>
         <h1 className="text-4xl sm:text-6xl md:text-7xl font-serif font-bold text-white leading-tight mb-6 shadow-sm">
-          Discover the Magic of <br />
+          {t.titlePrefix} <br />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-yellow-200">
             Cartagena
           </span>
         </h1>
         <p className="text-lg sm:text-xl text-gray-100 mb-10 max-w-2xl mx-auto font-light leading-relaxed">
-          Experience the Caribbean jewel through curated cultural walks, island adventures, and culinary journeys with <strong>Lpointiers Travels Tours</strong>.
+          {t.subtitle}
         </p>
         
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
@@ -34,13 +42,13 @@ const Hero: React.FC = () => {
             href="#experiences" 
             className="w-full sm:w-auto px-8 py-4 bg-orange-500 hover:bg-orange-600 text-white rounded-full font-bold text-lg transition-transform hover:scale-105 shadow-lg shadow-orange-500/30"
           >
-            Explore Packages
+            {t.ctaPrimary}
           </a>
           <button 
             onClick={() => window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ', '_blank')}
             className="w-full sm:w-auto px-8 py-4 bg-white/10 hover:bg-white/20 backdrop-blur-md text-white border border-white/30 rounded-full font-semibold text-lg flex items-center justify-center gap-2 transition-all"
           >
-            <Play size={20} fill="currentColor" /> Watch Video
+            <Play size={20} fill="currentColor" /> {t.ctaSecondary}
           </button>
         </div>
       </div>

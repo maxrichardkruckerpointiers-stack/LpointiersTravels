@@ -15,6 +15,21 @@ export interface Tour {
   };
 }
 
+export interface ItineraryActivity {
+  time: string;
+  activity: string;
+  location: string;
+  description: string;
+  priceEstimate: string; // e.g. "$50 USD" or "$200.000 COP"
+  category: 'Beach' | 'History' | 'Food' | 'Party' | 'Nature';
+}
+
+export interface ItineraryPlan {
+  title: string;
+  summary: string;
+  activities: ItineraryActivity[];
+}
+
 export interface Testimonial {
   id: string;
   name: string;
@@ -45,3 +60,5 @@ export interface PlannerState {
   budget: string;
   group: string;
 }
+
+export type Language = 'en' | 'es';
