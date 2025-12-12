@@ -74,4 +74,10 @@ export interface PlannerState {
   group: string;
 }
 
+export interface User {
+  name: string;
+  email: string;
+  avatar?: string;
+}
+
 export type Language = 'en' | 'es';

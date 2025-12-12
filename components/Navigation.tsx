@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Phone, Sparkles } from 'lucide-react';
+import { Menu, X, Phone, Sparkles, User as UserIcon, LogOut } from 'lucide-react';
 import { Language } from '../types';
 import { TRANSLATIONS } from '../translations';
 import { useData } from '../contexts/DataContext';
@@ -13,8 +13,9 @@ interface NavigationProps {
 const Navigation: React.FC<NavigationProps> = ({ language }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [showProfileMenu, setShowProfileMenu] = useState(false);
   const t = TRANSLATIONS[language].nav;
-  const { siteConfig } = useData();
+  const { siteConfig, user, setAuthModalOpen, logout } = useData();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -31,7 +32,6 @@ const Navigation: React.FC<NavigationProps> = ({ language }) => {
   ];
 
   return (
-    // Updated classes: fixed top-0, and dark background on scroll instead of white
     <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 border-b ${
       scrolled 
         ? 'bg-emerald-950/90 backdrop-blur-md shadow-lg py-3 border-emerald-800/50' 
@@ -40,13 +40,12 @@ const Navigation: React.FC<NavigationProps> = ({ language }) => {
       <div className="container px-4 sm:px-6">
         <div className="flex justify-between items-center">
           
-          {/* LOGO SECTION */}
+          {/* LOGO */}
           {siteConfig.logoUrl ? (
             <div className="flex-shrink-0">
                <img 
                  src={siteConfig.logoUrl} 
                  alt="EcoExplora Mundo Logo" 
-                 // Logo remains bright because background is always dark (transparent or dark emerald)
                  className="h-12 md:h-14 w-auto object-contain transition-all brightness-0 invert" 
                />
             </div>
@@ -72,6 +71,50 @@ const Navigation: React.FC<NavigationProps> = ({ language }) => {
                 {link.name}
               </a>
             ))}
+
+            {/* Auth Button */}
+            {user ? (
+               <div className="relative">
+                 <button 
+                   onClick={() => setShowProfileMenu(!showProfileMenu)}
+                   className="flex items-center gap-3 bg-emerald-900/50 hover:bg-emerald-800 px-3 py-1.5 rounded-full border border-emerald-700 transition-all"
+                 >
+                   {user.avatar ? (
+                     <img src={user.avatar} alt={user.name} className="w-8 h-8 rounded-full border border-secondary" />
+                   ) : (
+                     <div className="w-8 h-8 rounded-full bg-secondary flex items-center justify-center text-white font-bold">
+                       {user.name.charAt(0)}
+                     </div>
+                   )}
+                   <span className="text-sm font-medium text-white pr-2 max-w-[100px] truncate">{user.name.split(' ')[0]}</span>
+                 </button>
+
+                 {/* Dropdown */}
+                 {showProfileMenu && (
+                   <div className="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-xl overflow-hidden py-2 border border-gray-200 animate-fade-in-up">
+                      <div className="px-4 py-2 border-b border-gray-100">
+                        <p className="text-xs text-gray-500 uppercase tracking-wider">Cuenta</p>
+                        <p className="text-sm font-bold text-gray-800 truncate">{user.email}</p>
+                      </div>
+                      <button className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Mis Reservas</button>
+                      <button 
+                        onClick={() => { logout(); setShowProfileMenu(false); }}
+                        className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 flex items-center gap-2"
+                      >
+                        <LogOut size={14} /> Cerrar Sesión
+                      </button>
+                   </div>
+                 )}
+               </div>
+            ) : (
+                <button 
+                  onClick={() => setAuthModalOpen(true)}
+                  className="bg-transparent hover:bg-white/10 text-white px-5 py-2.5 rounded-full font-bold transition-all border border-white/20 flex items-center gap-2 text-sm"
+                >
+                  <UserIcon size={16} /> Login
+                </button>
+            )}
+
             <a 
               href="#contact" 
               className="bg-secondary hover:bg-secondary-light text-white px-6 py-2.5 rounded-full font-bold transition-all transform hover:scale-105 shadow-lg shadow-secondary/20 flex items-center gap-2 border border-secondary/50"
@@ -81,7 +124,19 @@ const Navigation: React.FC<NavigationProps> = ({ language }) => {
           </div>
 
           {/* Mobile Button */}
-          <div className="md:hidden flex items-center">
+          <div className="md:hidden flex items-center gap-4">
+            {/* Mobile Auth Trigger (Icon Only) */}
+            {!user && (
+              <button onClick={() => setAuthModalOpen(true)} className="text-white hover:text-secondary">
+                <UserIcon size={24} />
+              </button>
+            )}
+            {user && (
+               <button onClick={() => logout()} className="w-8 h-8 rounded-full bg-secondary text-white font-bold flex items-center justify-center text-xs">
+                 {user.name.charAt(0)}
+               </button>
+            )}
+
             <button 
               onClick={() => setIsOpen(!isOpen)} 
               className="text-2xl focus:outline-none text-white hover:text-secondary transition-colors"
@@ -92,7 +147,7 @@ const Navigation: React.FC<NavigationProps> = ({ language }) => {
         </div>
       </div>
 
-      {/* Mobile Menu (Dark Theme) */}
+      {/* Mobile Menu */}
       <div className={`md:hidden absolute top-full left-0 w-full bg-emerald-900/95 backdrop-blur-xl border-t border-emerald-800 shadow-2xl transition-all duration-300 ease-in-out transform origin-top ${isOpen ? 'scale-y-100 opacity-100' : 'scale-y-0 opacity-0 h-0'}`}>
         <div className="px-6 pt-6 pb-8 space-y-4 flex flex-col">
           {navLinks.map((link) => (
@@ -110,9 +165,19 @@ const Navigation: React.FC<NavigationProps> = ({ language }) => {
               {link.name}
             </a>
           ))}
+          
+          {!user && (
+            <button 
+              onClick={() => { setAuthModalOpen(true); setIsOpen(false); }}
+              className="mt-2 block w-full text-center border border-white/20 text-white font-bold py-3 rounded-xl hover:bg-white/10"
+            >
+              Iniciar Sesión / Registro
+            </button>
+          )}
+
           <a 
             href="#contact" 
-            className="mt-6 block w-full text-center bg-secondary text-white font-bold py-4 rounded-xl shadow-lg" 
+            className="mt-2 block w-full text-center bg-secondary text-white font-bold py-4 rounded-xl shadow-lg" 
             onClick={() => setIsOpen(false)}
           >
             {t.book}

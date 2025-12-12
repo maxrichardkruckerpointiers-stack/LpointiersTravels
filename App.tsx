@@ -14,6 +14,7 @@ import SmartPlanner from './components/SmartPlanner';
 import TopBanner from './components/TopBanner';
 import LoyaltyProgram from './components/LoyaltyProgram';
 import AdminPanel from './components/AdminPanel';
+import AuthModal from './components/AuthModal';
 import { Language } from './types';
 import { DataProvider } from './contexts/DataContext';
 
@@ -59,6 +60,9 @@ function App() {
       {/* Global Dark Theme applied here: bg-emerald-950 text-gray-100 */}
       <div className="antialiased text-gray-100 font-sans bg-emerald-950 selection:bg-secondary selection:text-white">
         {showAdminPanel && <AdminPanel onClose={() => setShowAdminPanel(false)} />}
+        
+        {/* Auth Modal for Customers */}
+        <AuthModal />
         
         {/* 0. Top Banner Offer */}
         <TopBanner language={language} />
