@@ -6,7 +6,7 @@ export const TOURS: Tour[] = [
     title: 'Historic Walled City Walk',
     category: 'Cultural',
     duration: '3 Hours',
-    price: 45,
+    price: 59, // Was 45
     rating: 4.9,
     reviews: 1240,
     image: 'https://picsum.photos/800/600?random=1',
@@ -22,7 +22,7 @@ export const TOURS: Tour[] = [
     title: 'Rosario Islands Snorkel',
     category: 'Adventure',
     duration: '8 Hours',
-    price: 85,
+    price: 109, // Was 85
     rating: 4.8,
     reviews: 856,
     image: 'https://picsum.photos/800/600?random=2',
@@ -38,7 +38,7 @@ export const TOURS: Tour[] = [
     title: 'Street Food Safari',
     category: 'Gastronomic',
     duration: '4 Hours',
-    price: 55,
+    price: 69, // Was 55
     rating: 5.0,
     reviews: 432,
     image: 'https://picsum.photos/800/600?random=3',
@@ -54,7 +54,7 @@ export const TOURS: Tour[] = [
     title: 'Sunset Sailing Experience',
     category: 'Family',
     duration: '2 Hours',
-    price: 65,
+    price: 85, // Was 65
     rating: 4.9,
     reviews: 210,
     image: 'https://picsum.photos/800/600?random=4',
