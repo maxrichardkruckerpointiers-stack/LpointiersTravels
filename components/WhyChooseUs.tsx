@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { ShieldCheck, UserCheck, Heart, Star, Target, Eye } from 'lucide-react';
 import { Language } from '../types';
@@ -34,35 +35,35 @@ const WhyChooseUs: React.FC<WhyChooseUsProps> = ({ language = 'en' }) => {
   ];
 
   return (
-    <section id="philosophy" className="py-20 bg-gray-50">
+    <section id="philosophy" className="py-24 bg-emerald-950 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Mission & Vision Cards */}
-        <div className="mb-20">
-            <div className="text-center mb-12">
-                <h2 className="text-3xl sm:text-4xl font-serif font-bold text-emerald-950 mb-4">{language === 'es' ? 'Nuestra Filosofía' : 'Our Philosophy'}</h2>
+        <div className="mb-24">
+            <div className="text-center mb-16">
+                <h2 className="text-3xl sm:text-5xl font-serif font-bold text-white mb-4">{language === 'es' ? 'Nuestra Filosofía' : 'Our Philosophy'}</h2>
                 <div className="w-24 h-1 bg-secondary mx-auto rounded-full"></div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {/* Mission - Primary Green */}
-                <div className="bg-white p-8 rounded-3xl shadow-lg border-l-8 border-primary flex flex-col items-start hover:shadow-xl transition-shadow">
-                    <div className="bg-emerald-100 p-3 rounded-full mb-4 text-primary">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                {/* Mission - Dark Card */}
+                <div className="bg-[#051c18] p-10 rounded-[2rem] shadow-xl border border-emerald-800 hover:border-secondary/50 flex flex-col items-start hover:shadow-2xl transition-all group">
+                    <div className="bg-emerald-900/50 p-4 rounded-full mb-6 text-emerald-400 group-hover:text-white group-hover:bg-emerald-600 transition-colors">
                         <Target size={32} />
                     </div>
-                    <h3 className="text-2xl font-bold text-primary-dark mb-4">{t.company.missionTitle}</h3>
-                    <p className="text-gray-600 leading-relaxed text-lg">
+                    <h3 className="text-3xl font-serif font-bold text-white mb-6">{t.company.missionTitle}</h3>
+                    <p className="text-gray-400 leading-relaxed text-lg font-light">
                         {t.company.missionText}
                     </p>
                 </div>
 
-                {/* Vision - Secondary Teal (Thematic) */}
-                <div className="bg-white p-8 rounded-3xl shadow-lg border-l-8 border-secondary flex flex-col items-start hover:shadow-xl transition-shadow">
-                    <div className="bg-teal-50 p-3 rounded-full mb-4 text-secondary">
+                {/* Vision - Dark Card */}
+                <div className="bg-[#051c18] p-10 rounded-[2rem] shadow-xl border border-emerald-800 hover:border-secondary/50 flex flex-col items-start hover:shadow-2xl transition-all group">
+                    <div className="bg-emerald-900/50 p-4 rounded-full mb-6 text-secondary group-hover:text-white group-hover:bg-secondary transition-colors">
                         <Eye size={32} />
                     </div>
-                    <h3 className="text-2xl font-bold text-secondary-dark mb-4">{t.company.visionTitle}</h3>
-                    <p className="text-gray-600 leading-relaxed text-lg">
+                    <h3 className="text-3xl font-serif font-bold text-white mb-6">{t.company.visionTitle}</h3>
+                    <p className="text-gray-400 leading-relaxed text-lg font-light">
                         {t.company.visionText}
                     </p>
                 </div>
@@ -70,14 +71,14 @@ const WhyChooseUs: React.FC<WhyChooseUsProps> = ({ language = 'en' }) => {
         </div>
 
         {/* Benefits Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {benefits.map((benefit, idx) => (
-            <div key={idx} className="flex flex-col items-center text-center p-6 rounded-2xl bg-white hover:bg-emerald-50 transition-colors shadow-sm hover:shadow-md border border-gray-100 group">
-              <div className="w-16 h-16 bg-emerald-100 text-primary rounded-full flex items-center justify-center mb-4 group-hover:bg-primary group-hover:text-white transition-colors">
+            <div key={idx} className="flex flex-col items-center text-center p-8 rounded-2xl bg-emerald-900/20 hover:bg-emerald-900/40 transition-colors border border-emerald-800 hover:border-emerald-600 group">
+              <div className="w-16 h-16 bg-emerald-900/50 text-emerald-400 rounded-full flex items-center justify-center mb-6 group-hover:bg-secondary group-hover:text-white transition-colors">
                 {benefit.icon}
               </div>
-              <h3 className="text-lg font-bold text-gray-900 mb-2">{benefit.title}</h3>
-              <p className="text-gray-600 text-sm leading-relaxed">{benefit.description}</p>
+              <h3 className="text-xl font-bold text-white mb-3">{benefit.title}</h3>
+              <p className="text-gray-400 text-sm leading-relaxed">{benefit.description}</p>
             </div>
           ))}
         </div>

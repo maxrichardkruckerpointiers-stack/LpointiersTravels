@@ -57,7 +57,8 @@ function App() {
 
   return (
     <DataProvider>
-      <div className="antialiased text-gray-900 font-sans">
+      {/* Global Dark Theme applied here: bg-emerald-950 text-gray-100 */}
+      <div className="antialiased text-gray-100 font-sans bg-emerald-950 selection:bg-secondary selection:text-white">
         {showAdminPanel && <AdminPanel onClose={() => setShowAdminPanel(false)} />}
         
         {/* 0. Top Banner Offer */}
@@ -70,7 +71,7 @@ function App() {
         <Hero language={language} />
         
         {/* === SECTION 1: CATALOG === */}
-        {/* 3. Featured Tours */}
+        {/* 3. Featured Tours (Includes the Price Menu) */}
         <FeaturedTours language={language} />
 
         {/* NEW: Rosario Islands Specific Section */}
