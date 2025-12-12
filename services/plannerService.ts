@@ -5,7 +5,7 @@ import { PlannerState } from "../types";
 const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
 const PLANNER_SYSTEM_INSTRUCTION = `
-You are an elite travel planner for "Cartagena Explorer". 
+You are an elite travel planner for "Lpointiers Travels Tours". 
 Create a short, exciting itinerary based on the user's input.
 Focus on suggesting specific locations in Cartagena like:
 - Rosario Islands (Islas del Rosario)

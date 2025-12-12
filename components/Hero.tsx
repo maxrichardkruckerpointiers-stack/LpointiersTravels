@@ -4,20 +4,20 @@ import { Play } from 'lucide-react';
 const Hero: React.FC = () => {
   return (
     <section className="relative h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Image (using image instead of video for reliability in this demo) */}
+      {/* Background Image: Real Cartagena Colonial Street */}
       <div className="absolute inset-0 z-0">
         <img 
-          src="https://picsum.photos/1920/1080?random=50" 
-          alt="Cartagena Old City" 
+          src="https://images.unsplash.com/photo-1583531352515-8884af319dc1?q=80&w=1920&auto=format&fit=crop" 
+          alt="Colorful streets of Cartagena Old City" 
           className="w-full h-full object-cover"
         />
         {/* Overlay gradient for readability */}
-        <div className="absolute inset-0 bg-gradient-to-t from-emerald-950/80 via-emerald-900/40 to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-emerald-950/80 via-emerald-900/50 to-transparent"></div>
       </div>
 
       <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto mt-16">
         <span className="inline-block py-1 px-3 rounded-full bg-orange-500/20 text-orange-200 border border-orange-400/30 backdrop-blur-sm text-sm font-semibold tracking-wider mb-6 animate-fade-in-up">
-          #1 Rated Tours in Colombia
+          #1 Rated Tours in Colombia with Lpointiers
         </span>
         <h1 className="text-4xl sm:text-6xl md:text-7xl font-serif font-bold text-white leading-tight mb-6 shadow-sm">
           Discover the Magic of <br />
@@ -26,7 +26,7 @@ const Hero: React.FC = () => {
           </span>
         </h1>
         <p className="text-lg sm:text-xl text-gray-100 mb-10 max-w-2xl mx-auto font-light leading-relaxed">
-          Experience the Caribbean jewel through curated cultural walks, island adventures, and culinary journeys tailored just for you.
+          Experience the Caribbean jewel through curated cultural walks, island adventures, and culinary journeys with <strong>Lpointiers Travels Tours</strong>.
         </p>
         
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">

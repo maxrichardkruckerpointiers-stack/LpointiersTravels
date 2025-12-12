@@ -23,7 +23,7 @@ const ReservationForm: React.FC = () => {
                     <Send className="text-green-600" size={32} />
                 </div>
                 <h2 className="text-3xl font-bold text-emerald-950 mb-4">You're All Set!</h2>
-                <p className="text-gray-600 mb-8">Thank you for your interest. One of our travel specialists will contact you shortly via WhatsApp or Email.</p>
+                <p className="text-gray-600 mb-8">Thank you for your interest. One of our travel specialists from Lpointiers Travels Tours will contact you shortly via WhatsApp or Email.</p>
                 <button className="flex items-center justify-center gap-2 mx-auto px-6 py-3 bg-emerald-800 text-white rounded-lg hover:bg-emerald-900 transition-colors">
                     <Download size={18} /> Download Free Cartagena Guide
                 </button>
@@ -41,7 +41,7 @@ const ReservationForm: React.FC = () => {
             {/* Form Side */}
             <div className="p-8 md:p-12 w-full md:w-1/2">
                 <h2 className="text-3xl font-serif font-bold text-emerald-950 mb-2">Plan Your Experience</h2>
-                <p className="text-gray-600 mb-8">Fill out the form below to book a tour or request a custom itinerary.</p>
+                <p className="text-gray-600 mb-8">Fill out the form below to book a tour with Lpointiers or request a custom itinerary.</p>
                 
                 <form onSubmit={handleSubmit} className="space-y-6">
                     <div>
@@ -77,11 +77,11 @@ const ReservationForm: React.FC = () => {
                 </form>
             </div>
 
-            {/* Image Side */}
+            {/* Image Side - Real Cartagena Image */}
             <div className="w-full md:w-1/2 relative min-h-[300px]">
                 <img 
-                    src="https://picsum.photos/800/1000?random=88" 
-                    alt="Cartagena Balcony" 
+                    src="https://images.unsplash.com/photo-1629833590742-02c31e428df1?q=80&w=1200&auto=format&fit=crop" 
+                    alt="Cartagena Balcony with Flowers" 
                     className="absolute inset-0 w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-emerald-900/40 flex items-center justify-center p-12">

@@ -26,8 +26,8 @@ const Navigation: React.FC = () => {
       <div className="container">
         <div className="flex justify-between items-center">
           <div className="flex-shrink-0 flex items-center">
-            <span className={`font-serif font-bold text-2xl ${scrolled ? 'text-primary-dark' : 'text-white'}`}>
-              Cartagena<span className="text-secondary">Explorer</span>
+            <span className={`font-serif font-bold text-xl md:text-2xl ${scrolled ? 'text-primary-dark' : 'text-white'}`}>
+              Lpointiers<span className="text-secondary"> Travels Tours</span>
             </span>
           </div>
           
