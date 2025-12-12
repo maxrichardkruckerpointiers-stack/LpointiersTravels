@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Anchor, Sun, Utensils, Star } from 'lucide-react';
+import { Anchor, Sun, Utensils, Star, ArrowRight } from 'lucide-react';
 import { Language } from '../types';
 import { TRANSLATIONS } from '../translations';
 import { useData } from '../contexts/DataContext';
@@ -27,7 +27,8 @@ const RosarioIslands: React.FC<RosarioIslandsProps> = ({ language }) => {
           <p className="text-gray-600 max-w-2xl mx-auto text-lg">{t.subtitle}</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {/* Updated Grid to 3 Columns for better layout of 6 items */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {islands.map((item) => (
             <div key={item.id} className="group relative bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 overflow-hidden flex flex-col h-full">
               
@@ -38,37 +39,37 @@ const RosarioIslands: React.FC<RosarioIslandsProps> = ({ language }) => {
                   alt={item.name} 
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-90"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-90"></div>
                 
                 {/* Price Tag */}
-                <div className="absolute top-4 right-4 bg-white text-emerald-950 font-bold px-3 py-1 rounded-full shadow-md text-sm">
+                <div className="absolute top-4 right-4 bg-white text-emerald-950 font-bold px-3 py-1 rounded-full shadow-md text-sm border border-emerald-100">
                   ${item.price} USD
                 </div>
 
                 {/* Vibe Badge */}
-                <div className="absolute top-4 left-4 bg-secondary/90 backdrop-blur-sm text-white text-xs font-bold px-2 py-1 rounded uppercase tracking-wide">
+                <div className="absolute top-4 left-4 bg-secondary/90 backdrop-blur-sm text-white text-xs font-bold px-2 py-1 rounded uppercase tracking-wide shadow-sm">
                   {item.vibe}
                 </div>
 
                 {/* Bottom Content on Image */}
-                <div className="absolute bottom-4 left-4 text-white">
-                  <h3 className="text-xl font-bold leading-tight mb-1">{item.name}</h3>
-                  <div className="flex items-center text-yellow-400 text-xs gap-1">
-                    <Star size={12} fill="currentColor" /> {item.rating}
+                <div className="absolute bottom-4 left-4 right-4 text-white">
+                  <h3 className="text-xl font-bold leading-tight mb-1 drop-shadow-md">{item.name}</h3>
+                  <div className="flex items-center text-yellow-400 text-xs gap-1 font-medium">
+                    <Star size={14} fill="currentColor" /> {item.rating}
                   </div>
                 </div>
               </div>
 
               {/* Details Body */}
               <div className="p-6 flex-grow flex flex-col">
-                <p className="text-gray-600 text-sm mb-4 line-clamp-3">
+                <p className="text-gray-600 text-sm mb-4 line-clamp-3 leading-relaxed">
                   {language === 'es' ? item.descriptionEs : item.descriptionEn}
                 </p>
                 
                 {/* Features */}
                 <div className="flex flex-wrap gap-2 mb-6">
                   {item.tags.map((tag, i) => (
-                    <span key={i} className="text-[10px] font-semibold bg-emerald-50 text-emerald-700 px-2 py-1 rounded-md border border-emerald-100">
+                    <span key={i} className="text-[10px] font-bold bg-emerald-50 text-emerald-700 px-2 py-1 rounded-md border border-emerald-100">
                       {tag}
                     </span>
                   ))}
@@ -76,17 +77,20 @@ const RosarioIslands: React.FC<RosarioIslandsProps> = ({ language }) => {
 
                 {/* Includes & CTA */}
                 <div className="mt-auto pt-4 border-t border-gray-100">
-                  <div className="flex items-center gap-2 text-xs text-gray-500 mb-4 justify-center">
-                    <Anchor size={14} className="text-secondary" /> 
-                    <Utensils size={14} className="text-secondary" /> 
-                    <span>{t.included}</span>
+                  <div className="flex items-center justify-between text-xs text-gray-500 mb-4">
+                     <div className="flex items-center gap-1">
+                        <Utensils size={14} className="text-secondary" /> Lunch
+                     </div>
+                     <div className="flex items-center gap-1">
+                        <Anchor size={14} className="text-secondary" /> Boat
+                     </div>
                   </div>
                   
                   <a 
                     href="#contact" 
-                    className="w-full block text-center bg-emerald-950 text-white font-bold py-3 rounded-xl hover:bg-secondary transition-colors duration-300"
+                    className="w-full flex items-center justify-center gap-2 bg-emerald-950 text-white font-bold py-3 rounded-xl hover:bg-secondary transition-colors duration-300 shadow-lg shadow-emerald-900/20"
                   >
-                    {t.bookBtn}
+                    {t.bookBtn} <ArrowRight size={16} />
                   </a>
                 </div>
               </div>

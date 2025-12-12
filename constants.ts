@@ -70,27 +70,26 @@ export const TOURS: Tour[] = [
 
 export const ISLANDS_DATA: Island[] = [
   {
-    id: 'tour-5-islas',
-    name: 'Super Tour 5 Islas VIP',
-    vibe: 'Full Adventure',
-    price: 85,
-    rating: 4.9,
-    // Placeholder image for the 5 Islands Tour - Upload your specific photos via Admin Panel or code update
-    image: 'https://images.unsplash.com/photo-1544473244-f6895e672d64?q=80&w=800&auto=format&fit=crop', 
-    tags: ['Bocachica', 'Snorkel', 'Cholón', 'Agua Azul', 'Playa Blanca'],
-    descriptionEn: 'The most complete experience. Visit 5 highlights in one day: Bocachica Forts, Snorkeling in Rosario, Party in Cholón, Relax in Agua Azul, and Sunset in Barú.',
-    descriptionEs: 'La experiencia más completa. Visita 5 puntos en un día: Fuertes de Bocachica, Snorkel en Rosario, Fiesta en Cholón, Relax en Agua Azul y Atardecer en Barú.'
-  },
-  {
     id: 'bora-bora',
     name: 'Bora Bora Beach Club',
     vibe: 'Party & Exclusive',
-    price: 95,
+    price: 105,
     rating: 4.8,
-    image: 'https://tour5islas.com/wp-content/uploads/2024/09/4.jpg', 
-    tags: ['DJ Live', 'Day Bed', 'Welcome Drink'],
-    descriptionEn: 'The most famous club. Party, house music, and vibrant atmosphere.',
-    descriptionEs: 'El club más famoso. Fiesta, música house y ambiente vibrante.'
+    image: 'https://images.unsplash.com/photo-1575425186775-b8de9a427e67?q=80&w=800&auto=format&fit=crop', 
+    tags: ['DJ Live', 'Camas de Playa', 'Cóctel Bienvenida'],
+    descriptionEn: 'The most famous club in Rosario Islands. Vibrant atmosphere, house music, and a VIP area for those looking to party in style.',
+    descriptionEs: 'El club más famoso de las Islas del Rosario. Ambiente vibrante, música house y zona VIP para quienes buscan fiesta con estilo.'
+  },
+  {
+    id: 'isla-encanto',
+    name: 'Hotel Isla del Encanto',
+    vibe: 'Luxury & Relax',
+    price: 115,
+    rating: 4.9,
+    image: 'https://images.unsplash.com/photo-1540541338287-41700207dee6?q=80&w=800&auto=format&fit=crop', 
+    tags: ['Piscina', 'Buffet Premium', 'Familiar'],
+    descriptionEn: 'A true eco-hotel experience. Large pool, private white sand beach, and an exquisite buffet. Perfect for families and couples.',
+    descriptionEs: 'Una verdadera experiencia de eco-hotel. Gran piscina, playa privada de arena blanca y un buffet exquisito. Perfecto para familias y parejas.'
   },
   {
     id: 'cholon',
@@ -98,21 +97,43 @@ export const ISLANDS_DATA: Island[] = [
     vibe: 'Yacht Party',
     price: 85,
     rating: 4.7,
-    image: 'https://cdn.yate.co/img/yates/2022/2/5-islas-4-uct1250.jpg', 
-    tags: ['Young Crowd', 'Boat Party', 'Drinks'],
-    descriptionEn: 'Madness on the sea. Boats, loud music, and partying in the water.',
-    descriptionEs: 'La locura en el mar. Lanchas, música a todo volumen y fiesta en el agua.'
+    image: 'https://images.unsplash.com/photo-1544473244-f6895e672d64?q=80&w=800&auto=format&fit=crop', 
+    tags: ['Público Joven', 'Rumba en Bote', 'Mariscos'],
+    descriptionEn: 'The meeting point for yachts and boats. Loud music, drinks in the water, and a high-energy party atmosphere.',
+    descriptionEs: 'El punto de encuentro de yates y lanchas. Música alta, bebidas en el agua y un ambiente de fiesta de alta energía.'
   },
   {
-    id: 'isla-encanto',
-    name: 'Isla Encanto / Luxury',
-    vibe: 'Relax & Premium',
-    price: 110,
+    id: 'bendita-beach',
+    name: 'Bendita Beach',
+    vibe: 'Private & Eco',
+    price: 95,
     rating: 4.9,
-    image: 'https://images.unsplash.com/photo-1540541338287-41700207dee6?q=80&w=800&auto=format&fit=crop', 
-    tags: ['Pool', 'Buffet', 'Private Beach'],
-    descriptionEn: 'Disconnect in a luxury eco-resort with pool and private beach.',
-    descriptionEs: 'Desconéctate en un resort ecológico de lujo con piscina y playa privada.'
+    image: 'https://images.unsplash.com/photo-1596436889106-be35e843f974?q=80&w=800&auto=format&fit=crop', 
+    tags: ['Exclusivo', 'Playa Virgen', 'Tranquilidad'],
+    descriptionEn: 'An island dedicated to privacy. Strictly limited capacity ensuring peace, quiet, and a deep connection with the Caribbean nature.',
+    descriptionEs: 'Una isla dedicada a la privacidad. Capacidad estrictamente limitada asegurando paz, tranquilidad y conexión con la naturaleza caribeña.'
+  },
+  {
+    id: 'gente-de-mar',
+    name: 'Gente de Mar (Isla Grande)',
+    vibe: 'Nature & Coral',
+    price: 90,
+    rating: 4.8,
+    image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=800&auto=format&fit=crop', 
+    tags: ['Agua Cristalina', 'Snorkel', 'Arrecifes'],
+    descriptionEn: 'Located on Isla Grande, known for having some of the clearest waters in the archipelago and beautiful coral reefs.',
+    descriptionEs: 'Ubicado en Isla Grande, conocido por tener una de las aguas más cristalinas del archipiélago y hermosos arrecifes de coral.'
+  },
+  {
+    id: 'fenix-beach',
+    name: 'Fenix Beach (Tierra Bomba)',
+    vibe: 'Boho Chic',
+    price: 70,
+    rating: 4.7,
+    image: 'https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?q=80&w=800&auto=format&fit=crop', 
+    tags: ['Cerca a Ciudad', 'Diseño', 'Buena Música'],
+    descriptionEn: 'Modern boho style just 15 mins from the city. Great DJs, amazing paella, and a very instagrammable aesthetic.',
+    descriptionEs: 'Estilo boho moderno a solo 15 min de la ciudad. Grandes DJs, paella increíble y una estética muy "instagrammable".'
   }
 ];
 

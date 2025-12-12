@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Clock, Star, ArrowRight, Leaf, Tag } from 'lucide-react';
+import { Clock, Star, ArrowRight, Leaf, Tag, Download, Info } from 'lucide-react';
 import { useData } from '../contexts/DataContext';
 import { Language } from '../types';
 
@@ -9,41 +9,135 @@ interface FeaturedToursProps {
 }
 
 const FeaturedTours: React.FC<FeaturedToursProps> = ({ language = 'en' }) => {
-  const { tours } = useData();
+  const { tours, islands } = useData();
   const [filter, setFilter] = useState<'All' | 'Cultural' | 'Adventure' | 'Gastronomic' | 'Family'>('All');
 
   const filteredTours = filter === 'All' ? tours : tours.filter(t => t.category === filter);
-
   const categories = ['All', 'Cultural', 'Adventure', 'Gastronomic', 'Family'];
+
+  // Translations for the Price List
+  const t = {
+    title: language === 'es' ? 'Tarifas Oficiales 2025' : 'Official Rates 2025',
+    subtitle: language === 'es' ? 'Experiencias Premium & Pasadías' : 'Premium Experiences & Day Trips',
+    citySection: language === 'es' ? 'Experiencias en Ciudad' : 'City Experiences',
+    islandSection: language === 'es' ? 'Islas del Rosario & Playas' : 'Rosario Islands & Beaches',
+    currency: 'USD',
+    book: language === 'es' ? 'Reservar' : 'Book',
+    duration: language === 'es' ? 'Duración' : 'Duration',
+    fullDay: language === 'es' ? 'Día Completo' : 'Full Day'
+  };
 
   return (
     <section id="experiences" className="py-20 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Updated Header as requested: Price Chart / Carta de Precios */}
-        <div className="text-center mb-12 border-b border-gray-200 pb-8">
-          <span className="inline-flex items-center gap-1 py-1 px-3 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-200 text-xs font-bold tracking-wider mb-3 uppercase">
-             <Tag size={12} /> {language === 'es' ? 'Temporada 2025' : '2025 Season'}
-          </span>
-          <h2 className="text-3xl sm:text-5xl font-serif font-bold text-emerald-950">
-            {language === 'es' ? 'Carta de Precios y Planes' : 'Official Price List & Plans'}
-          </h2>
+        
+        {/* --- PROFESSIONAL PRICE LIST DESIGN --- */}
+        <div className="mb-20 animate-fade-in-up">
+          <div className="bg-white p-8 md:p-12 rounded-3xl shadow-2xl border border-emerald-900/10 relative overflow-hidden">
+             {/* Decorative Background */}
+             <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-50 rounded-full blur-3xl opacity-50 -mr-16 -mt-16 pointer-events-none"></div>
+             <div className="absolute bottom-0 left-0 w-64 h-64 bg-orange-50 rounded-full blur-3xl opacity-50 -ml-16 -mb-16 pointer-events-none"></div>
+
+             {/* Header */}
+             <div className="text-center mb-12 relative z-10">
+                <span className="text-xs font-bold tracking-[0.3em] text-emerald-600 uppercase mb-3 block">EcoExplora Mundo</span>
+                <h2 className="text-4xl md:text-5xl font-serif font-bold text-emerald-950 mb-2">{t.title}</h2>
+                <div className="w-20 h-1 bg-gradient-to-r from-emerald-500 to-secondary mx-auto rounded-full mb-4"></div>
+                <p className="text-gray-500 italic font-serif">{t.subtitle}</p>
+             </div>
+
+             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 relative z-10">
+                
+                {/* Column 1: City Tours */}
+                <div>
+                   <h3 className="text-xl font-bold text-emerald-900 mb-6 flex items-center gap-2 border-b border-emerald-100 pb-2">
+                      <span className="bg-emerald-100 p-1 rounded text-emerald-700"><Info size={16}/></span>
+                      {t.citySection}
+                   </h3>
+                   <div className="space-y-6">
+                      {tours.map((tour) => (
+                        <div key={tour.id} className="group cursor-default">
+                           <div className="flex items-baseline justify-between mb-1">
+                              <h4 className="text-lg font-serif font-bold text-gray-800 group-hover:text-emerald-700 transition-colors">
+                                {tour.title}
+                              </h4>
+                              {/* Dotted Leader */}
+                              <div className="flex-grow mx-4 border-b-2 border-dotted border-gray-300 relative top-[-4px]"></div>
+                              <span className="text-lg font-bold text-emerald-900">${tour.price}</span>
+                           </div>
+                           <div className="flex justify-between items-center text-sm text-gray-500">
+                              <span className="italic">{tour.duration}</span>
+                              <span className="flex items-center gap-1 text-xs bg-gray-100 px-2 py-0.5 rounded text-gray-600">
+                                <Star size={10} fill="currentColor" className="text-yellow-500" /> {tour.rating}
+                              </span>
+                           </div>
+                        </div>
+                      ))}
+                   </div>
+                </div>
+
+                {/* Column 2: Islands */}
+                <div>
+                   <h3 className="text-xl font-bold text-secondary-dark mb-6 flex items-center gap-2 border-b border-secondary/20 pb-2">
+                      <span className="bg-secondary/10 p-1 rounded text-secondary"><Leaf size={16}/></span>
+                      {t.islandSection}
+                   </h3>
+                   <div className="space-y-6">
+                      {islands.map((island) => (
+                        <div key={island.id} className="group cursor-default">
+                           <div className="flex items-baseline justify-between mb-1">
+                              <h4 className="text-lg font-serif font-bold text-gray-800 group-hover:text-secondary transition-colors">
+                                {island.name}
+                              </h4>
+                              {/* Dotted Leader */}
+                              <div className="flex-grow mx-4 border-b-2 border-dotted border-gray-300 relative top-[-4px]"></div>
+                              <span className="text-lg font-bold text-emerald-900">${island.price}</span>
+                           </div>
+                           <div className="flex justify-between items-center text-sm text-gray-500">
+                              <span className="italic">{island.vibe} • {t.fullDay}</span>
+                              <span className="flex items-center gap-1 text-xs bg-gray-100 px-2 py-0.5 rounded text-gray-600">
+                                <Star size={10} fill="currentColor" className="text-yellow-500" /> {island.rating}
+                              </span>
+                           </div>
+                        </div>
+                      ))}
+                   </div>
+                </div>
+
+             </div>
+
+             {/* Footer of Price List */}
+             <div className="mt-12 text-center pt-8 border-t border-gray-100">
+                <p className="text-xs text-gray-400 mb-4 uppercase tracking-widest">
+                  {language === 'es' ? 'Impuestos incluidos • Reserva flexible • Soporte 24/7' : 'Taxes included • Flexible Booking • 24/7 Support'}
+                </p>
+                <a href="#contact" className="inline-flex items-center gap-2 px-8 py-3 bg-emerald-900 text-white rounded-full font-bold hover:bg-emerald-800 transition-all shadow-lg hover:shadow-emerald-900/30">
+                   <Download size={18} /> {language === 'es' ? 'Descargar Catálogo PDF' : 'Download PDF Catalog'}
+                </a>
+             </div>
+          </div>
         </div>
 
-        {/* Filter Tabs */}
-        <div className="flex flex-wrap justify-center gap-2 mb-12">
-          {categories.map(cat => (
-            <button
-              key={cat}
-              onClick={() => setFilter(cat as any)}
-              className={`px-6 py-2 rounded-full text-sm font-semibold transition-all duration-300 ${
-                filter === cat 
-                  ? 'bg-primary text-white shadow-md transform scale-105' 
-                  : 'bg-white text-gray-600 hover:bg-emerald-50 border border-gray-200'
-              }`}
-            >
-              {language === 'es' && cat === 'All' ? 'Todos' : cat}
-            </button>
-          ))}
+        {/* --- EXISTING VISUAL CARDS SECTION (Visual Hierarchy: Secondary) --- */}
+        <div className="text-center mb-8">
+          <h3 className="text-2xl font-bold text-gray-800 mb-6">{language === 'es' ? 'Galería Detallada' : 'Detailed Gallery'}</h3>
+          
+          {/* Filter Tabs */}
+          <div className="flex flex-wrap justify-center gap-2 mb-8">
+            {categories.map(cat => (
+              <button
+                key={cat}
+                onClick={() => setFilter(cat as any)}
+                className={`px-6 py-2 rounded-full text-sm font-semibold transition-all duration-300 ${
+                  filter === cat 
+                    ? 'bg-white text-emerald-800 border-2 border-emerald-600 shadow-sm' 
+                    : 'bg-transparent text-gray-500 hover:text-emerald-700 border border-transparent'
+                }`}
+              >
+                {language === 'es' && cat === 'All' ? 'Todos' : cat}
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* Cards Grid */}
@@ -77,12 +171,6 @@ const FeaturedTours: React.FC<FeaturedToursProps> = ({ language = 'en' }) => {
                                 tour.ecoScore.level === 'High' ? 'bg-green-50 text-green-700 border-green-200' : 'bg-teal-50 text-teal-700 border-teal-200'
                             }`}>
                                 <Leaf size={10} /> Eco: {tour.ecoScore.level}
-                            </div>
-                            <div className="absolute bottom-full right-0 mb-2 w-48 bg-gray-800 text-white text-xs rounded-lg p-2 opacity-0 group-hover/eco:opacity-100 transition-opacity pointer-events-none z-10 shadow-lg">
-                                <p className="font-bold mb-1">Sustainable Impact:</p>
-                                <ul className="list-disc pl-3 space-y-1">
-                                    {tour.ecoScore.tags.map(tag => <li key={tag}>{tag}</li>)}
-                                </ul>
                             </div>
                         </div>
                     )}
