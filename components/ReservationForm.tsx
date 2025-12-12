@@ -1,8 +1,15 @@
 import React, { useState } from 'react';
-import { Send, Download } from 'lucide-react';
+import { Send, Download, Tag } from 'lucide-react';
+import { Language } from '../types';
+import { TRANSLATIONS } from '../translations';
 
-const ReservationForm: React.FC = () => {
+interface ReservationFormProps {
+  language?: Language;
+}
+
+const ReservationForm: React.FC<ReservationFormProps> = ({ language = 'en' }) => {
   const [submitted, setSubmitted] = useState(false);
+  const t = TRANSLATIONS[language].form;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -18,14 +25,14 @@ const ReservationForm: React.FC = () => {
     return (
       <section id="contact" className="py-20 bg-emerald-50">
         <div className="max-w-3xl mx-auto px-4 text-center">
-            <div className="bg-white p-12 rounded-3xl shadow-xl">
+            <div className="bg-white p-12 rounded-3xl shadow-xl animate-fade-in-up">
                 <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
                     <Send className="text-green-600" size={32} />
                 </div>
-                <h2 className="text-3xl font-bold text-emerald-950 mb-4">You're All Set!</h2>
-                <p className="text-gray-600 mb-8">Thank you for your interest. One of our travel specialists from Lpointiers Travels Tours will contact you shortly via WhatsApp or Email.</p>
+                <h2 className="text-3xl font-bold text-emerald-950 mb-4">{t.successTitle}</h2>
+                <p className="text-gray-600 mb-8">{t.successMsg}</p>
                 <button className="flex items-center justify-center gap-2 mx-auto px-6 py-3 bg-emerald-800 text-white rounded-lg hover:bg-emerald-900 transition-colors">
-                    <Download size={18} /> Download Free Cartagena Guide
+                    <Download size={18} /> {t.download}
                 </button>
             </div>
         </div>
@@ -40,26 +47,26 @@ const ReservationForm: React.FC = () => {
             
             {/* Form Side */}
             <div className="p-8 md:p-12 w-full md:w-1/2">
-                <h2 className="text-3xl font-serif font-bold text-emerald-950 mb-2">Plan Your Experience</h2>
-                <p className="text-gray-600 mb-8">Fill out the form below to book a tour with Lpointiers or request a custom itinerary.</p>
+                <h2 className="text-3xl font-serif font-bold text-emerald-950 mb-2">{t.title}</h2>
+                <p className="text-gray-600 mb-8">{t.subtitle}</p>
                 
                 <form onSubmit={handleSubmit} className="space-y-6">
                     <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">{t.name}</label>
                         <input type="text" required className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none transition-all" placeholder="John Doe" />
                     </div>
                     <div className="grid grid-cols-2 gap-4">
                         <div>
-                             <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                             <label className="block text-sm font-medium text-gray-700 mb-1">{t.email}</label>
                              <input type="email" required className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none transition-all" placeholder="john@example.com" />
                         </div>
                         <div>
-                             <label className="block text-sm font-medium text-gray-700 mb-1">WhatsApp / Phone</label>
+                             <label className="block text-sm font-medium text-gray-700 mb-1">{t.phone}</label>
                              <input type="tel" required className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none transition-all" placeholder="+1 234 567 8900" />
                         </div>
                     </div>
                     <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">Interested In</label>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">{t.interest}</label>
                         <select className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none transition-all">
                             <option>General Inquiry</option>
                             <option>Walled City Walk</option>
@@ -68,8 +75,22 @@ const ReservationForm: React.FC = () => {
                             <option>Custom Itinerary</option>
                         </select>
                     </div>
+
+                    {/* Promo Code Section */}
+                    <div className="relative">
+                        <label className="block text-sm font-medium text-gray-700 mb-1">{t.promo}</label>
+                        <div className="relative">
+                           <input 
+                              type="text" 
+                              className="w-full pl-10 pr-4 py-3 rounded-lg border border-dashed border-secondary/50 bg-orange-50 focus:ring-2 focus:ring-secondary focus:border-transparent outline-none transition-all text-secondary-dark font-medium placeholder-secondary/50" 
+                              placeholder="LPOINTIERS20" 
+                           />
+                           <Tag className="absolute left-3 top-1/2 transform -translate-y-1/2 text-secondary" size={18} />
+                        </div>
+                    </div>
+
                     <button type="submit" className="w-full bg-orange-500 text-white font-bold py-4 rounded-xl hover:bg-orange-600 transition-colors shadow-lg shadow-orange-500/20">
-                        Start Planning My Trip
+                        {t.submit}
                     </button>
                     <p className="text-xs text-center text-gray-500 mt-4">
                         We respect your privacy. No spam, ever.

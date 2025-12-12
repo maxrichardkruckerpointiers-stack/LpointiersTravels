@@ -28,6 +28,35 @@ export const TRANSLATIONS = {
       btnGenerate: 'Generate My Dream Plan',
       btnLoading: 'Designing Plan...',
       bookPlan: 'Book This Plan'
+    },
+    banner: {
+      text: "🎉 First Time? Get 20% OFF your first booking!",
+      code: "Use Code: LPOINTIERS20",
+      dismiss: "Dismiss"
+    },
+    loyalty: {
+      title: "Review & Earn L-Points",
+      subtitle: "Join our loyalty program. Share your experience and earn points redeemable for free activities and discounts.",
+      step1Title: "Travel",
+      step1Desc: "Book any tour with us.",
+      step2Title: "Review",
+      step2Desc: "Leave a review + photo.",
+      step3Title: "Earn",
+      step3Desc: "Get 500 XP per review.",
+      cta: "Start Earning Today"
+    },
+    form: {
+      title: "Plan Your Experience",
+      subtitle: "Fill out the form below to book a tour with Lpointiers or request a custom itinerary.",
+      name: "Full Name",
+      email: "Email",
+      phone: "WhatsApp / Phone",
+      interest: "Interested In",
+      promo: "Promo Code (Optional)",
+      submit: "Start Planning My Trip",
+      successTitle: "You're All Set!",
+      successMsg: "Thank you! If your promo code is valid, your discount will be applied in the final quote sent to your email.",
+      download: "Download Free Cartagena Guide"
     }
   },
   es: {
@@ -57,6 +86,35 @@ export const TRANSLATIONS = {
       btnGenerate: 'Generar Mi Plan Soñado',
       btnLoading: 'Diseñando Plan...',
       bookPlan: 'Reservar Este Plan'
+    },
+    banner: {
+      text: "🎉 ¿Primera vez? ¡Obtén 20% OFF en tu primera reserva!",
+      code: "Usa Código: LPOINTIERS20",
+      dismiss: "Cerrar"
+    },
+    loyalty: {
+      title: "Reseña y Gana L-Points",
+      subtitle: "Únete a nuestro programa de lealtad. Comparte tu experiencia y gana puntos canjeables por actividades gratis.",
+      step1Title: "Viaja",
+      step1Desc: "Reserva cualquier tour.",
+      step2Title: "Reseña",
+      step2Desc: "Deja opinión + foto.",
+      step3Title: "Gana",
+      step3Desc: "Recibe 500 XP por reseña.",
+      cta: "Empieza a Ganar Hoy"
+    },
+    form: {
+      title: "Planea Tu Experiencia",
+      subtitle: "Completa el formulario para reservar un tour con Lpointiers o solicitar un itinerario personalizado.",
+      name: "Nombre Completo",
+      email: "Correo Electrónico",
+      phone: "WhatsApp / Teléfono",
+      interest: "Interesado En",
+      promo: "Código Promocional (Opcional)",
+      submit: "Comenzar a Planear",
+      successTitle: "¡Todo Listo!",
+      successMsg: "¡Gracias! Si tu código promocional es válido, el descuento se aplicará en la cotización final enviada a tu correo.",
+      download: "Descargar Guía Gratis"
     }
   }
 };

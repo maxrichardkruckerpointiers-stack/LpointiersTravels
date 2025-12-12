@@ -10,6 +10,8 @@ import ReservationForm from './components/ReservationForm';
 import Footer from './components/Footer';
 import AiChatAssistant from './components/AiChatAssistant';
 import SmartPlanner from './components/SmartPlanner';
+import TopBanner from './components/TopBanner';
+import LoyaltyProgram from './components/LoyaltyProgram';
 import { Language } from './types';
 
 function App() {
@@ -32,6 +34,9 @@ function App() {
 
   return (
     <div className="antialiased text-gray-900 font-sans">
+      {/* 0. Top Banner Offer */}
+      <TopBanner language={language} />
+
       {/* 2. Minimalist Navigation */}
       <Navigation language={language} />
       
@@ -49,6 +54,9 @@ function App() {
       
       {/* 5. Testimonials */}
       <Testimonials />
+
+      {/* NEW: Loyalty Program (Points for reviews) */}
+      <LoyaltyProgram language={language} />
       
       {/* 8. Interactive Tour Map */}
       <InteractiveMap />
@@ -56,8 +64,8 @@ function App() {
       {/* 6. Practical Info */}
       <PracticalInfo />
       
-      {/* 7. Reservation Form */}
-      <ReservationForm />
+      {/* 7. Reservation Form (With Promo Code) */}
+      <ReservationForm language={language} />
       
       {/* Footer */}
       <Footer />
