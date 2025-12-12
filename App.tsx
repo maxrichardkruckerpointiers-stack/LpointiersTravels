@@ -69,31 +69,36 @@ function App() {
         {/* 1. Hero Header */}
         <Hero language={language} />
         
-        {/* NEW: AI Smart Planner V2 */}
-        <SmartPlanner language={language} />
-        
+        {/* === SECTION 1: CATALOG === */}
         {/* 3. Featured Tours */}
         <FeaturedTours />
 
         {/* NEW: Rosario Islands Specific Section */}
         <RosarioIslands language={language} />
         
-        {/* 5. Testimonials */}
-        <Testimonials />
-
-        {/* NEW: Loyalty Program (Points for reviews) */}
-        <LoyaltyProgram language={language} />
-        
-        {/* 8. Interactive Tour Map */}
+        {/* 8. Interactive Tour Map (Fits well with Catalog) */}
         <InteractiveMap />
-        
+
+        {/* === SECTION 2: AI PLANNER === */}
+        {/* NEW: AI Smart Planner V2 */}
+        <SmartPlanner language={language} />
+
+        {/* === SECTION 3: CONTACT & INFO === */}
         {/* 6. Practical Info */}
         <PracticalInfo />
         
         {/* 7. Reservation Form (With Promo Code) */}
         <ReservationForm language={language} />
         
-        {/* 4. Why Choose Us (Philosophy/Mission/Vision) - Moved to bottom as requested */}
+        {/* === SECTION 4: REVIEWS & LOYALTY === */}
+        {/* 5. Testimonials */}
+        <Testimonials />
+
+        {/* NEW: Loyalty Program (Points for reviews) */}
+        <LoyaltyProgram language={language} />
+        
+        {/* === SECTION 5: PHILOSOPHY === */}
+        {/* 4. Why Choose Us (Philosophy/Mission/Vision) */}
         <WhyChooseUs language={language} />
 
         {/* Footer with Admin Trigger - SOLO VISIBLE SI ESTÁ DESBLOQUEADO */}
