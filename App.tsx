@@ -43,9 +43,6 @@ function App() {
       {/* 1. Hero Header */}
       <Hero language={language} />
       
-      {/* 4. Why Choose Us (Includes Mission/Vision) */}
-      <WhyChooseUs language={language} />
-
       {/* NEW: AI Smart Planner V2 */}
       <SmartPlanner language={language} />
       
@@ -67,6 +64,9 @@ function App() {
       {/* 7. Reservation Form (With Promo Code) */}
       <ReservationForm language={language} />
       
+      {/* 4. Why Choose Us (Philosophy/Mission/Vision) - Moved to bottom as requested */}
+      <WhyChooseUs language={language} />
+
       {/* Footer */}
       <Footer />
 
