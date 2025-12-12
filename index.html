@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Explore Cartagena with expert local guides. Book cultural walks, island adventures, and culinary experiences." />
+    <meta name="theme-color" content="#022c22" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://cartagenatours.app/" />
+    <meta property="og:title" content="Cartagena Tours | Experience the Magic" />
+    <meta property="og:description" content="Discover the secrets of the Spanish colonial era, walking through colorful streets and historic plazas." />
+    <meta property="og:image" content="https://picsum.photos/1200/630?random=1" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:title" content="Cartagena Tours | Experience the Magic" />
+    <meta property="twitter:description" content="Explore Cartagena with expert local guides." />
+    <meta property="twitter:image" content="https://picsum.photos/1200/630?random=1" />
+
+    <title>Cartagena Tours | Experience the Magic</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        theme: {
+          container: {
+            center: true,
+            padding: '1.5rem',
+            screens: {
+              sm: '640px',
+              md: '768px',
+              lg: '1024px',
+              xl: '1280px',
+              '2xl': '1280px',
+            },
+          },
+          extend: {
+            fontFamily: {
+              sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+              serif: ['"Playfair Display"', 'serif'],
+            },
+            colors: {
+              primary: {
+                DEFAULT: '#064e3b', // emerald-850
+                dark: '#022c22',    // emerald-950
+                light: '#10b981',   // emerald-500
+              },
+              secondary: {
+                DEFAULT: '#f97316', // orange-500
+                light: '#fdba74',   // orange-300
+                dark: '#c2410c',    // orange-700
+              },
+              emerald: {
+                850: '#064e3b',
+                950: '#022c22',
+              },
+              orange: {
+                450: '#fdba74',
+              }
+            },
+            animation: {
+              'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+              'bounce-slow': 'bounce 3s infinite',
+              'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            },
+            keyframes: {
+              fadeInUp: {
+                '0%': { opacity: '0', transform: 'translateY(20px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' },
+              }
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      /* Smooth scrolling for anchor links */
+      html {
+        scroll-behavior: smooth;
+      }
+      .hide-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .hide-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@18.3.1",
+    "react/": "https://esm.sh/react@18.3.1/",
+    "react-dom": "https://esm.sh/react-dom@18.3.1",
+    "react-dom/client": "https://esm.sh/react-dom@18.3.1/client",
+    "@google/genai": "https://esm.sh/@google/genai",
+    "lucide-react": "https://esm.sh/lucide-react@0.344.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/"
+  }
+}
+</script>
+</head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>

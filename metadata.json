@@ -1,0 +1,7 @@
+{
+  "name": "Cartagena Tours & Experiences",
+  "description": "High-converting landing page for a premier tour agency in Cartagena, Colombia, featuring AI-powered assistance and seamless booking.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}
