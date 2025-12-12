@@ -1,34 +1,9 @@
 import { GoogleGenAI } from "@google/genai";
 import { ChatMessage } from "../types";
 
-// Safe access to environment variables to prevent runtime crashes in browser environments
-// where 'process' might not be defined globally.
-const getApiKey = () => {
-  try {
-    // @ts-ignore
-    if (typeof process !== 'undefined' && process.env && process.env.API_KEY) {
-      // @ts-ignore
-      return process.env.API_KEY;
-    }
-    // Check for Vite-style env vars if process is missing
-    // @ts-ignore
-    if (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.VITE_API_KEY) {
-       // @ts-ignore
-       return import.meta.env.VITE_API_KEY;
-    }
-  } catch (e) {
-    console.warn("Could not access environment variables safely.");
-  }
-  return '';
-};
-
-const apiKey = getApiKey();
-
-// Initialize only if key exists to avoid immediate errors, handle gracefully in sendMessage
-let ai: GoogleGenAI | null = null;
-if (apiKey) {
-  ai = new GoogleGenAI({ apiKey });
-}
+// Thanks to vite.config.ts 'define', process.env.API_KEY is available in the browser build.
+// @ts-ignore
+const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
 const SYSTEM_INSTRUCTION = `
 You are "Carly", an expert local tour guide for Cartagena, Colombia. 
@@ -50,7 +25,8 @@ export const sendMessageToGemini = async (
   message: string,
   history: ChatMessage[]
 ): Promise<string> => {
-  if (!apiKey || !ai) {
+  // @ts-ignore
+  if (!process.env.API_KEY) {
     return "I'm currently offline (Configuration missing). Please contact us directly via the form!";
   }
 
