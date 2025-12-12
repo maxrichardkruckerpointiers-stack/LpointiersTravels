@@ -1,21 +1,32 @@
 
 import React from 'react';
 import { Facebook, Instagram, Twitter, Globe, Lock } from 'lucide-react';
+import { useData } from '../contexts/DataContext';
 
 interface FooterProps {
   onAdminClick?: () => void;
 }
 
 const Footer: React.FC<FooterProps> = ({ onAdminClick }) => {
+  const { siteConfig } = useData();
+
   return (
     <footer className="bg-primary-dark text-white py-12 border-t border-primary">
       <div className="container">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           <div className="col-span-1 md:col-span-2">
-            <h3 className="text-2xl font-serif font-bold mb-4 flex items-center gap-2">
-              <Globe size={24} className="text-secondary" />
-              EcoExplorer<span className="text-secondary"> Mundo</span>
-            </h3>
+             {siteConfig.logoUrl ? (
+                <img 
+                  src={siteConfig.logoUrl} 
+                  alt="EcoExplorer Mundo Logo" 
+                  className="h-16 w-auto object-contain mb-4 brightness-0 invert" 
+                />
+             ) : (
+                <h3 className="text-2xl font-serif font-bold mb-4 flex items-center gap-2">
+                  <Globe size={24} className="text-secondary" />
+                  EcoExplorer<span className="text-secondary"> Mundo</span>
+                </h3>
+             )}
             <p className="text-gray-300 max-w-sm">
               Creating unforgettable memories in Cartagena. High quality, competitive prices, and a reputation built on trust and unique experiences.
             </p>

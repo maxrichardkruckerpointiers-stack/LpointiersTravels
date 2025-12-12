@@ -1,7 +1,9 @@
+
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Phone, Sparkles, Globe } from 'lucide-react';
 import { Language } from '../types';
 import { TRANSLATIONS } from '../translations';
+import { useData } from '../contexts/DataContext';
 
 interface NavigationProps {
   language: Language;
@@ -11,6 +13,7 @@ const Navigation: React.FC<NavigationProps> = ({ language }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const t = TRANSLATIONS[language].nav;
+  const { siteConfig } = useData();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -32,12 +35,24 @@ const Navigation: React.FC<NavigationProps> = ({ language }) => {
     <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white/95 backdrop-blur-md shadow-lg py-3' : 'bg-transparent py-5'}`}>
       <div className="container">
         <div className="flex justify-between items-center">
-          <div className="flex-shrink-0 flex items-center gap-2">
-            <Globe size={24} className={scrolled ? 'text-secondary' : 'text-white'} />
-            <span className={`font-serif font-bold text-xl md:text-2xl ${scrolled ? 'text-primary-dark' : 'text-white'}`}>
-              EcoExplorer<span className="text-secondary"> Mundo</span>
-            </span>
-          </div>
+          
+          {/* LOGO SECTION */}
+          {siteConfig.logoUrl ? (
+            <div className="flex-shrink-0">
+               <img 
+                 src={siteConfig.logoUrl} 
+                 alt="EcoExplorer Mundo Logo" 
+                 className={`h-12 md:h-14 w-auto object-contain transition-all ${scrolled ? '' : 'brightness-0 invert'}`} 
+               />
+            </div>
+          ) : (
+            <div className="flex-shrink-0 flex items-center gap-2">
+              <Globe size={24} className={scrolled ? 'text-secondary' : 'text-white'} />
+              <span className={`font-serif font-bold text-xl md:text-2xl ${scrolled ? 'text-primary-dark' : 'text-white'}`}>
+                EcoExplorer<span className="text-secondary"> Mundo</span>
+              </span>
+            </div>
+          )}
           
           {/* Desktop Nav */}
           <div className="hidden md:flex space-x-8 items-center">

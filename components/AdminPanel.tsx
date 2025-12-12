@@ -1,26 +1,28 @@
 
 import React, { useState } from 'react';
 import { useData } from '../contexts/DataContext';
-import { X, Lock, Save, RotateCcw, Image, DollarSign, Edit3, LogOut } from 'lucide-react';
+import { X, Lock, Save, RotateCcw, Image, DollarSign, Edit3, LogOut, Settings } from 'lucide-react';
 
 interface AdminPanelProps {
   onClose: () => void;
 }
 
 const AdminPanel: React.FC<AdminPanelProps> = ({ onClose }) => {
-  const { tours, islands, updateTour, updateIsland, resetData } = useData();
+  const { tours, islands, siteConfig, updateTour, updateIsland, updateConfig, resetData } = useData();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [password, setPassword] = useState('');
-  const [activeTab, setActiveTab] = useState<'tours' | 'islands'>('tours');
+  const [activeTab, setActiveTab] = useState<'tours' | 'islands' | 'settings'>('tours');
   const [editingId, setEditingId] = useState<string | null>(null);
 
   // Form states
   const [editForm, setEditForm] = useState<any>({});
+  const [logoInput, setLogoInput] = useState(siteConfig.logoUrl);
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
     if (password === 'admin123') {
       setIsAuthenticated(true);
+      setLogoInput(siteConfig.logoUrl);
     } else {
       alert('Contraseña incorrecta');
     }
@@ -34,10 +36,15 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ onClose }) => {
   const handleSave = () => {
     if (activeTab === 'tours') {
       updateTour(editingId!, editForm);
-    } else {
+    } else if (activeTab === 'islands') {
       updateIsland(editingId!, editForm);
     }
     setEditingId(null);
+  };
+
+  const handleSaveConfig = () => {
+    updateConfig({ logoUrl: logoInput });
+    alert('Configuración guardada');
   };
 
   const handleLogoutDevice = () => {
@@ -126,106 +133,152 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ onClose }) => {
             <Image size={20} className="sm:hidden mb-1" />
             <span className="text-xs sm:text-base">Islas</span>
           </button>
+          <button 
+            onClick={() => setActiveTab('settings')} 
+            className={`p-4 text-left font-semibold border-b flex flex-col sm:flex-row items-center sm:gap-2 ${activeTab === 'settings' ? 'bg-emerald-50 text-emerald-800 border-l-4 border-l-emerald-600' : 'text-gray-600 hover:bg-gray-50'}`}
+          >
+            <Settings size={20} className="sm:hidden mb-1" />
+            <span className="text-xs sm:text-base">Ajustes</span>
+          </button>
         </div>
 
         {/* Content */}
         <div className="flex-1 overflow-y-auto p-4 sm:p-8">
-          <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
-            {/* List */}
-            <div className="space-y-4">
-              <h2 className="text-xl sm:text-2xl font-serif font-bold text-gray-800 mb-6">
-                Editando: {activeTab === 'tours' ? 'Tours Principales' : 'Islas & Playas'}
-              </h2>
-              
-              {(activeTab === 'tours' ? tours : islands).map((item: any) => (
-                <div 
-                  key={item.id} 
-                  onClick={() => startEdit(item)}
-                  className={`bg-white p-4 rounded-xl shadow-sm border cursor-pointer transition-all hover:shadow-md flex gap-4 items-center ${editingId === item.id ? 'border-emerald-500 ring-2 ring-emerald-500/20' : 'border-gray-200'}`}
-                >
-                  <img src={item.image} alt="" className="w-16 h-16 rounded-lg object-cover bg-gray-100" />
-                  <div className="flex-1">
-                    <h3 className="font-bold text-gray-800 text-sm sm:text-base">{item.title || item.name}</h3>
-                    <p className="text-emerald-600 font-medium text-sm">${item.price} USD</p>
+          
+          {activeTab === 'settings' ? (
+             <div className="max-w-2xl mx-auto bg-white rounded-2xl shadow-lg border border-gray-200 p-8">
+                <h2 className="text-2xl font-serif font-bold text-gray-800 mb-6 flex items-center gap-2">
+                  <Settings className="text-emerald-600" /> Configuración General
+                </h2>
+                
+                <div className="space-y-6">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">URL del Logo (Link)</label>
+                    <p className="text-xs text-gray-500 mb-2">Pega aquí el link público de tu imagen (recomiendo .png sin fondo).</p>
+                    <div className="flex gap-2">
+                      <input 
+                        type="text" 
+                        className="flex-1 px-4 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none"
+                        value={logoInput}
+                        onChange={(e) => setLogoInput(e.target.value)}
+                        placeholder="https://..."
+                      />
+                    </div>
                   </div>
-                  <Edit3 size={16} className="text-gray-400" />
+
+                  {logoInput && (
+                    <div className="p-4 bg-gray-100 rounded-lg text-center">
+                      <p className="text-xs text-gray-500 mb-2">Vista Previa:</p>
+                      <img src={logoInput} alt="Preview" className="h-16 mx-auto object-contain" />
+                    </div>
+                  )}
+
+                  <button 
+                    onClick={handleSaveConfig}
+                    className="w-full bg-emerald-600 text-white py-3 rounded-xl font-bold hover:bg-emerald-700 transition-colors flex justify-center items-center gap-2"
+                  >
+                    <Save size={18} /> Guardar Configuración
+                  </button>
                 </div>
-              ))}
-            </div>
-
-            {/* Editor */}
-            <div className="xl:sticky xl:top-8 h-fit">
-              <div className="bg-white rounded-2xl shadow-xl p-6 sm:p-8 border border-gray-200">
-                {editingId ? (
-                  <div className="space-y-6">
-                    <div className="flex justify-between items-center mb-4 border-b pb-4">
-                      <h3 className="font-bold text-lg text-gray-800">Editar Item</h3>
-                      <span className="text-xs bg-gray-100 px-2 py-1 rounded text-gray-500">ID: {editingId}</span>
+             </div>
+          ) : (
+            <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
+              {/* List */}
+              <div className="space-y-4">
+                <h2 className="text-xl sm:text-2xl font-serif font-bold text-gray-800 mb-6">
+                  Editando: {activeTab === 'tours' ? 'Tours Principales' : 'Islas & Playas'}
+                </h2>
+                
+                {(activeTab === 'tours' ? tours : islands).map((item: any) => (
+                  <div 
+                    key={item.id} 
+                    onClick={() => startEdit(item)}
+                    className={`bg-white p-4 rounded-xl shadow-sm border cursor-pointer transition-all hover:shadow-md flex gap-4 items-center ${editingId === item.id ? 'border-emerald-500 ring-2 ring-emerald-500/20' : 'border-gray-200'}`}
+                  >
+                    <img src={item.image} alt="" className="w-16 h-16 rounded-lg object-cover bg-gray-100" />
+                    <div className="flex-1">
+                      <h3 className="font-bold text-gray-800 text-sm sm:text-base">{item.title || item.name}</h3>
+                      <p className="text-emerald-600 font-medium text-sm">${item.price} USD</p>
                     </div>
-
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">Nombre / Título</label>
-                      <input 
-                        type="text" 
-                        className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none"
-                        value={editForm.title || editForm.name || ''}
-                        onChange={(e) => setEditForm({...editForm, [activeTab === 'tours' ? 'title' : 'name']: e.target.value})}
-                      />
-                    </div>
-
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1 flex items-center gap-2">
-                         <DollarSign size={14} /> Precio (USD)
-                      </label>
-                      <input 
-                        type="number" 
-                        className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none"
-                        value={editForm.price || 0}
-                        onChange={(e) => setEditForm({...editForm, price: Number(e.target.value)})}
-                      />
-                    </div>
-
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1 flex items-center gap-2">
-                         <Image size={14} /> URL Imagen
-                      </label>
-                      <input 
-                        type="text" 
-                        className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none text-xs"
-                        value={editForm.image || ''}
-                        onChange={(e) => setEditForm({...editForm, image: e.target.value})}
-                      />
-                      {editForm.image && (
-                        <div className="mt-2 h-32 w-full rounded-lg overflow-hidden border">
-                          <img src={editForm.image} alt="Preview" className="w-full h-full object-cover" />
-                        </div>
-                      )}
-                    </div>
-
-                    <div className="pt-4 flex flex-col sm:flex-row gap-3">
-                      <button 
-                        onClick={handleSave}
-                        className="flex-1 bg-emerald-600 text-white py-3 rounded-xl font-bold hover:bg-emerald-700 transition-colors flex justify-center items-center gap-2"
-                      >
-                        <Save size={18} /> Guardar
-                      </button>
-                      <button 
-                        onClick={() => setEditingId(null)}
-                        className="px-6 py-3 border border-gray-300 rounded-xl font-bold hover:bg-gray-50 text-gray-600"
-                      >
-                        Cancelar
-                      </button>
-                    </div>
+                    <Edit3 size={16} className="text-gray-400" />
                   </div>
-                ) : (
-                  <div className="text-center text-gray-400 py-12 flex flex-col items-center">
-                    <Edit3 size={48} className="mb-4 opacity-20" />
-                    <p>Seleccione un item para editar.</p>
-                  </div>
-                )}
+                ))}
+              </div>
+
+              {/* Editor */}
+              <div className="xl:sticky xl:top-8 h-fit">
+                <div className="bg-white rounded-2xl shadow-xl p-6 sm:p-8 border border-gray-200">
+                  {editingId ? (
+                    <div className="space-y-6">
+                      <div className="flex justify-between items-center mb-4 border-b pb-4">
+                        <h3 className="font-bold text-lg text-gray-800">Editar Item</h3>
+                        <span className="text-xs bg-gray-100 px-2 py-1 rounded text-gray-500">ID: {editingId}</span>
+                      </div>
+
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">Nombre / Título</label>
+                        <input 
+                          type="text" 
+                          className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none"
+                          value={editForm.title || editForm.name || ''}
+                          onChange={(e) => setEditForm({...editForm, [activeTab === 'tours' ? 'title' : 'name']: e.target.value})}
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-1 flex items-center gap-2">
+                          <DollarSign size={14} /> Precio (USD)
+                        </label>
+                        <input 
+                          type="number" 
+                          className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none"
+                          value={editForm.price || 0}
+                          onChange={(e) => setEditForm({...editForm, price: Number(e.target.value)})}
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-1 flex items-center gap-2">
+                          <Image size={14} /> URL Imagen
+                        </label>
+                        <input 
+                          type="text" 
+                          className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none text-xs"
+                          value={editForm.image || ''}
+                          onChange={(e) => setEditForm({...editForm, image: e.target.value})}
+                        />
+                        {editForm.image && (
+                          <div className="mt-2 h-32 w-full rounded-lg overflow-hidden border">
+                            <img src={editForm.image} alt="Preview" className="w-full h-full object-cover" />
+                          </div>
+                        )}
+                      </div>
+
+                      <div className="pt-4 flex flex-col sm:flex-row gap-3">
+                        <button 
+                          onClick={handleSave}
+                          className="flex-1 bg-emerald-600 text-white py-3 rounded-xl font-bold hover:bg-emerald-700 transition-colors flex justify-center items-center gap-2"
+                        >
+                          <Save size={18} /> Guardar
+                        </button>
+                        <button 
+                          onClick={() => setEditingId(null)}
+                          className="px-6 py-3 border border-gray-300 rounded-xl font-bold hover:bg-gray-50 text-gray-600"
+                        >
+                          Cancelar
+                        </button>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="text-center text-gray-400 py-12 flex flex-col items-center">
+                      <Edit3 size={48} className="mb-4 opacity-20" />
+                      <p>Seleccione un item para editar.</p>
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
     </div>
