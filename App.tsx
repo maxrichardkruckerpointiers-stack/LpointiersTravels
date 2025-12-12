@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Navigation from './components/Navigation';
 import Hero from './components/Hero';
 import FeaturedTours from './components/FeaturedTours';
+import RosarioIslands from './components/RosarioIslands';
 import WhyChooseUs from './components/WhyChooseUs';
 import Testimonials from './components/Testimonials';
 import PracticalInfo from './components/PracticalInfo';
@@ -48,6 +49,9 @@ function App() {
       
       {/* 3. Featured Tours */}
       <FeaturedTours />
+
+      {/* NEW: Rosario Islands Specific Section */}
+      <RosarioIslands language={language} />
       
       {/* 5. Testimonials */}
       <Testimonials />

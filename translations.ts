@@ -17,6 +17,12 @@ export const TRANSLATIONS = {
       ctaPrimary: 'Explore Adventures',
       ctaSecondary: 'Watch Our Story'
     },
+    rosario: {
+      title: "Rosario Islands Paradise",
+      subtitle: "From exclusive beach clubs to crystal clear public beaches. Choose your perfect Caribbean escape.",
+      included: "Includes boat & lunch",
+      bookBtn: "Reserve Spot"
+    },
     company: {
       missionTitle: "Our Mission",
       missionText: "To grant a unique and unforgettable experience for every user, connecting them with the magic of Cartagena through high-quality service, competitive prices, and a deep respect for our culture and environment.",
@@ -80,6 +86,12 @@ export const TRANSLATIONS = {
       subtitle: 'Viajes inolvidables creados con pasión. Combinamos calidad premium, precios justos y una reputación estelar para darte el viaje de tu vida.',
       ctaPrimary: 'Explorar Aventuras',
       ctaSecondary: 'Ver Nuestra Historia'
+    },
+    rosario: {
+      title: "Paraíso Islas del Rosario",
+      subtitle: "Desde clubes de playa exclusivos hasta playas cristalinas. Elige tu escape caribeño perfecto.",
+      included: "Incluye lancha y almuerzo",
+      bookBtn: "Reservar Cupo"
     },
     company: {
       missionTitle: "Nuestra Misión",
