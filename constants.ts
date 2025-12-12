@@ -70,6 +70,18 @@ export const TOURS: Tour[] = [
 
 export const ISLANDS_DATA: Island[] = [
   {
+    id: 'tour-5-islas',
+    name: 'Super Tour 5 Islas VIP',
+    vibe: 'Full Adventure',
+    price: 85,
+    rating: 4.9,
+    // Placeholder image for the 5 Islands Tour - Upload your specific photos via Admin Panel or code update
+    image: 'https://images.unsplash.com/photo-1544473244-f6895e672d64?q=80&w=800&auto=format&fit=crop', 
+    tags: ['Bocachica', 'Snorkel', 'Cholón', 'Agua Azul', 'Playa Blanca'],
+    descriptionEn: 'The most complete experience. Visit 5 highlights in one day: Bocachica Forts, Snorkeling in Rosario, Party in Cholón, Relax in Agua Azul, and Sunset in Barú.',
+    descriptionEs: 'La experiencia más completa. Visita 5 puntos en un día: Fuertes de Bocachica, Snorkel en Rosario, Fiesta en Cholón, Relax en Agua Azul y Atardecer en Barú.'
+  },
+  {
     id: 'bora-bora',
     name: 'Bora Bora Beach Club',
     vibe: 'Party & Exclusive',
@@ -79,17 +91,6 @@ export const ISLANDS_DATA: Island[] = [
     tags: ['DJ Live', 'Day Bed', 'Welcome Drink'],
     descriptionEn: 'The most famous club. Party, house music, and vibrant atmosphere.',
     descriptionEs: 'El club más famoso. Fiesta, música house y ambiente vibrante.'
-  },
-  {
-    id: 'playa-blanca',
-    name: 'Playa Blanca (Barú)',
-    vibe: 'Popular & Blue Water',
-    price: 35,
-    rating: 4.2,
-    image: 'https://images.unsplash.com/photo-1583362306778-9e7f86127117?q=80&w=800&auto=format&fit=crop', 
-    tags: ['Budget Friendly', 'Crystal Water', 'Local Food'],
-    descriptionEn: 'The bluest and most popular beach. Ideal for tight budgets.',
-    descriptionEs: 'La playa más azul y popular. Ideal para presupuestos ajustados.'
   },
   {
     id: 'cholon',
