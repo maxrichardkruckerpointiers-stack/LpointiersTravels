@@ -1,60 +1,36 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { MapPin } from 'lucide-react';
-import { MAP_MARKERS } from '../constants';
 
 const InteractiveMap: React.FC = () => {
-  const [activeMarker, setActiveMarker] = useState<string | null>(null);
-
   return (
     <section className="py-16 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-10 text-center">
-            <h2 className="text-3xl font-serif font-bold text-emerald-950">Explore Our Destinations</h2>
-            <p className="text-gray-600">Click the markers to discover where adventure awaits.</p>
+            <h2 className="text-3xl font-serif font-bold text-emerald-950">Explore Cartagena</h2>
+            <p className="text-gray-600">Discover our tour meeting points and popular destinations in real-time.</p>
         </div>
 
-        <div className="relative w-full max-w-5xl mx-auto h-[400px] md:h-[600px] bg-blue-50 rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
-          {/* Simulated Map Background */}
-          <img 
-            src="https://picsum.photos/1200/800?grayscale&blur=2" 
-            alt="Map of Cartagena" 
-            className="w-full h-full object-cover opacity-60"
-          />
-          <div className="absolute inset-0 bg-emerald-900/10 mix-blend-multiply"></div>
+        <div className="relative w-full max-w-6xl mx-auto h-[400px] md:h-[600px] bg-gray-100 rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
+          {/* Google Maps Embed */}
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3924.627295881372!2d-75.54929762386866!3d10.42144598970669!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8ef62ec63e80313d%3A0x6e7655079a4073d4!2sCartagena%2C%20Bolivar%2C%20Colombia!5e0!3m2!1sen!2sus!4v1716300000000!5m2!1sen!2sus" 
+            width="100%" 
+            height="100%" 
+            style={{ border: 0 }} 
+            allowFullScreen={true} 
+            loading="lazy" 
+            referrerPolicy="no-referrer-when-downgrade"
+            title="Cartagena Map"
+          ></iframe>
 
-          {/* Markers */}
-          {MAP_MARKERS.map((marker) => (
-            <div 
-              key={marker.id}
-              className="absolute transform -translate-x-1/2 -translate-y-1/2 cursor-pointer group"
-              style={{ left: `${marker.x}%`, top: `${marker.y}%` }}
-              onClick={() => setActiveMarker(activeMarker === marker.id ? null : marker.id)}
-            >
-              <div className="relative">
-                <MapPin 
-                    size={40} 
-                    className={`text-secondary drop-shadow-lg transition-transform hover:scale-125 ${activeMarker === marker.id ? 'scale-125 text-primary' : ''}`} 
-                    fill="currentColor"
-                />
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75 top-0 left-0 -z-10"></span>
-              </div>
-
-              {/* Tooltip Card */}
-              {activeMarker === marker.id && (
-                <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2 w-64 bg-white p-3 rounded-xl shadow-2xl z-20 animate-fade-in-up border border-emerald-100">
-                  <div className="h-32 w-full rounded-lg overflow-hidden mb-3">
-                    <img src={marker.image} alt={marker.title} className="w-full h-full object-cover" />
-                  </div>
-                  <h4 className="font-bold text-emerald-950">{marker.title}</h4>
-                  <p className="text-xs text-gray-600 mb-2">{marker.description}</p>
-                  <a href="#experiences" className="text-xs font-bold text-primary hover:text-primary-light">View Tours &rarr;</a>
-                  
-                  {/* Arrow */}
-                  <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-white rotate-45 border-r border-b border-emerald-100"></div>
-                </div>
-              )}
+          {/* Overlay Badge */}
+          <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-4 py-2 rounded-xl shadow-lg border border-emerald-100 flex items-center gap-2 pointer-events-none">
+            <MapPin className="text-red-500" size={20} fill="currentColor" />
+            <div>
+              <p className="text-xs font-bold text-gray-500 uppercase">Current Location</p>
+              <p className="font-bold text-emerald-950">Cartagena de Indias</p>
             </div>
-          ))}
+          </div>
         </div>
       </div>
     </section>
