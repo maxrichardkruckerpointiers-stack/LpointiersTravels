@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Phone } from 'lucide-react';
+import { Menu, X, Phone, Sparkles } from 'lucide-react';
 
 const Navigation: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -15,6 +15,7 @@ const Navigation: React.FC = () => {
 
   const navLinks = [
     { name: 'Experiences', href: '#experiences' },
+    { name: 'AI Planner', href: '#ai-planner', special: true },
     { name: 'Why Us', href: '#why-us' },
     { name: 'Reviews', href: '#reviews' },
     { name: 'Contact', href: '#contact' },
@@ -36,8 +37,13 @@ const Navigation: React.FC = () => {
               <a 
                 key={link.name} 
                 href={link.href} 
-                className={`font-medium hover:text-secondary transition-colors ${scrolled ? 'text-gray-700' : 'text-white/90'}`}
+                className={`font-medium transition-colors flex items-center gap-1 ${
+                  link.special 
+                    ? 'text-secondary font-bold hover:text-secondary-dark' 
+                    : scrolled ? 'text-gray-700 hover:text-secondary' : 'text-white/90 hover:text-white'
+                }`}
               >
+                {link.special && <Sparkles size={14} />}
                 {link.name}
               </a>
             ))}
@@ -68,9 +74,12 @@ const Navigation: React.FC = () => {
             <a 
               key={link.name}
               href={link.href}
-              className="block px-3 py-3 text-base font-medium text-gray-700 hover:text-secondary hover:bg-gray-50 rounded-md"
+              className={`block px-3 py-3 text-base font-medium rounded-md flex items-center gap-2 ${
+                  link.special ? 'text-secondary bg-orange-50' : 'text-gray-700 hover:text-secondary hover:bg-gray-50'
+              }`}
               onClick={() => setIsOpen(false)}
             >
+              {link.special && <Sparkles size={16} />}
               {link.name}
             </a>
           ))}

@@ -11,7 +11,11 @@ export const TOURS: Tour[] = [
     reviews: 1240,
     image: 'https://picsum.photos/800/600?random=1',
     description: 'Discover the secrets of the Spanish colonial era, walking through colorful streets and historic plazas.',
-    highlights: ['San Felipe Castle', 'Clock Tower', 'Local Historian Guide']
+    highlights: ['San Felipe Castle', 'Clock Tower', 'Local Historian Guide'],
+    ecoScore: {
+      level: 'High',
+      tags: ['Walking Tour', 'Zero Carbon', 'Supports Local Heritage']
+    }
   },
   {
     id: '2',
@@ -23,7 +27,11 @@ export const TOURS: Tour[] = [
     reviews: 856,
     image: 'https://picsum.photos/800/600?random=2',
     description: 'Escape to the crystal clear waters of the Caribbean. Snorkel in coral reefs and relax on white sand beaches.',
-    highlights: ['Private Boat', 'Snorkeling Gear', 'Fresh Seafood Lunch']
+    highlights: ['Private Boat', 'Snorkeling Gear', 'Fresh Seafood Lunch'],
+    ecoScore: {
+      level: 'Medium',
+      tags: ['Reef Protection Fee', 'No Single-use Plastics']
+    }
   },
   {
     id: '3',
@@ -35,7 +43,11 @@ export const TOURS: Tour[] = [
     reviews: 432,
     image: 'https://picsum.photos/800/600?random=3',
     description: 'Taste the real Cartagena. From buttery arepas to fresh ceviche, eat your way through the local markets.',
-    highlights: ['5 Food Tastings', 'Bazurto Market', 'Exotic Fruits']
+    highlights: ['5 Food Tastings', 'Bazurto Market', 'Exotic Fruits'],
+    ecoScore: {
+      level: 'High',
+      tags: ['100% Local Vendors', 'Food Waste Reduction']
+    }
   },
   {
     id: '4',
@@ -47,7 +59,11 @@ export const TOURS: Tour[] = [
     reviews: 210,
     image: 'https://picsum.photos/800/600?random=4',
     description: 'A magical evening sailing around the bay. Perfect for families and couples looking for the best view of the skyline.',
-    highlights: ['Open Bar', 'Live Music', 'Sunset Views']
+    highlights: ['Open Bar', 'Live Music', 'Sunset Views'],
+    ecoScore: {
+      level: 'Medium',
+      tags: ['Wind Powered', 'Ocean Conservation Donation']
+    }
   }
 ];
 

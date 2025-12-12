@@ -9,6 +9,10 @@ export interface Tour {
   image: string;
   description: string;
   highlights: string[];
+  ecoScore?: {
+    level: 'High' | 'Medium' | 'Low'; // Environmental impact
+    tags: string[]; // e.g., "Plastic Free", "Local Community Support"
+  };
 }
 
 export interface Testimonial {
@@ -33,4 +37,11 @@ export interface MapMarker {
 export interface ChatMessage {
   role: 'user' | 'model';
   text: string;
+}
+
+export interface PlannerState {
+  vibe: string;
+  days: string;
+  budget: string;
+  group: string;
 }

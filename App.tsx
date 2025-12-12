@@ -9,6 +9,7 @@ import InteractiveMap from './components/InteractiveMap';
 import ReservationForm from './components/ReservationForm';
 import Footer from './components/Footer';
 import AiChatAssistant from './components/AiChatAssistant';
+import SmartPlanner from './components/SmartPlanner';
 
 function App() {
   
@@ -34,8 +35,11 @@ function App() {
       
       {/* 4. Why Choose Us (High conversion impact, placed early) */}
       <WhyChooseUs />
+
+      {/* NEW: AI Smart Planner */}
+      <SmartPlanner />
       
-      {/* 3. Featured Tours */}
+      {/* 3. Featured Tours (Now with Eco-Badges) */}
       <FeaturedTours />
       
       {/* 5. Testimonials & Social Proof */}

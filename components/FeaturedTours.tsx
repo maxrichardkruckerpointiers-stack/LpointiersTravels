@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Clock, Star, ArrowRight } from 'lucide-react';
+import { Clock, Star, ArrowRight, Leaf } from 'lucide-react';
 import { TOURS } from '../constants';
 
 const FeaturedTours: React.FC = () => {
@@ -53,9 +53,28 @@ const FeaturedTours: React.FC = () => {
               </div>
               
               <div className="p-6 flex-grow flex flex-col">
-                <div className="flex items-center gap-2 text-yellow-500 mb-2 text-xs font-bold">
-                  <Star size={14} fill="currentColor" /> {tour.rating} ({tour.reviews} reviews)
+                <div className="flex justify-between items-start mb-2">
+                    <div className="flex items-center gap-2 text-yellow-500 text-xs font-bold">
+                        <Star size={14} fill="currentColor" /> {tour.rating} ({tour.reviews})
+                    </div>
+                    {/* Sustainability Badge */}
+                    {tour.ecoScore && (
+                        <div className="group/eco relative cursor-help">
+                            <div className={`flex items-center gap-1 text-[10px] px-2 py-1 rounded-full font-bold border ${
+                                tour.ecoScore.level === 'High' ? 'bg-green-50 text-green-700 border-green-200' : 'bg-yellow-50 text-yellow-700 border-yellow-200'
+                            }`}>
+                                <Leaf size={10} /> Eco: {tour.ecoScore.level}
+                            </div>
+                            <div className="absolute bottom-full right-0 mb-2 w-48 bg-gray-800 text-white text-xs rounded-lg p-2 opacity-0 group-hover/eco:opacity-100 transition-opacity pointer-events-none z-10 shadow-lg">
+                                <p className="font-bold mb-1">Sustainable Impact:</p>
+                                <ul className="list-disc pl-3 space-y-1">
+                                    {tour.ecoScore.tags.map(tag => <li key={tag}>{tag}</li>)}
+                                </ul>
+                            </div>
+                        </div>
+                    )}
                 </div>
+
                 <h3 className="text-xl font-bold text-gray-900 mb-2 leading-tight">{tour.title}</h3>
                 <div className="flex items-center text-gray-500 text-sm mb-4">
                   <Clock size={16} className="mr-1" /> {tour.duration}
