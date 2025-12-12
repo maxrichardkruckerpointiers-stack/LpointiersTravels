@@ -27,13 +27,17 @@ const Navigation: React.FC<NavigationProps> = ({ language }) => {
   const navLinks = [
     { name: t.experiences, href: '#experiences' },
     { name: t.planner, href: '#ai-planner', special: true },
-    // Removed Philosophy and Reviews links as requested
     { name: t.contact, href: '#contact' },
   ];
 
   return (
-    <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white/95 backdrop-blur-md shadow-lg py-3' : 'bg-transparent py-5'}`}>
-      <div className="container">
+    // Updated classes: fixed top-0, and dark background on scroll instead of white
+    <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 border-b ${
+      scrolled 
+        ? 'bg-emerald-950/90 backdrop-blur-md shadow-lg py-3 border-emerald-800/50' 
+        : 'bg-transparent py-5 border-transparent'
+    }`}>
+      <div className="container px-4 sm:px-6">
         <div className="flex justify-between items-center">
           
           {/* LOGO SECTION */}
@@ -42,7 +46,8 @@ const Navigation: React.FC<NavigationProps> = ({ language }) => {
                <img 
                  src={siteConfig.logoUrl} 
                  alt="EcoExplora Mundo Logo" 
-                 className={`h-12 md:h-14 w-auto object-contain transition-all ${scrolled ? '' : 'brightness-0 invert'}`} 
+                 // Logo remains bright because background is always dark (transparent or dark emerald)
+                 className="h-12 md:h-14 w-auto object-contain transition-all brightness-0 invert" 
                />
             </div>
           ) : (
@@ -57,19 +62,19 @@ const Navigation: React.FC<NavigationProps> = ({ language }) => {
               <a 
                 key={link.name} 
                 href={link.href} 
-                className={`font-medium transition-colors flex items-center gap-1 ${
+                className={`font-medium transition-colors flex items-center gap-1 text-sm tracking-wide ${
                   link.special 
-                    ? 'text-secondary font-bold hover:text-secondary-dark' 
-                    : scrolled ? 'text-gray-700 hover:text-secondary' : 'text-white/90 hover:text-white'
+                    ? 'text-yellow-400 font-bold hover:text-yellow-300' 
+                    : 'text-gray-200 hover:text-white'
                 }`}
               >
-                {link.special && <Sparkles size={14} />}
+                {link.special && <Sparkles size={14} className="animate-pulse" />}
                 {link.name}
               </a>
             ))}
             <a 
               href="#contact" 
-              className="bg-secondary hover:bg-secondary-dark text-white px-5 py-2.5 rounded-full font-bold transition-transform transform hover:scale-105 shadow-md flex items-center gap-2"
+              className="bg-secondary hover:bg-secondary-light text-white px-6 py-2.5 rounded-full font-bold transition-all transform hover:scale-105 shadow-lg shadow-secondary/20 flex items-center gap-2 border border-secondary/50"
             >
               <Phone size={16} /> {t.book}
             </a>
@@ -79,7 +84,7 @@ const Navigation: React.FC<NavigationProps> = ({ language }) => {
           <div className="md:hidden flex items-center">
             <button 
               onClick={() => setIsOpen(!isOpen)} 
-              className={`text-2xl focus:outline-none ${scrolled ? 'text-gray-800' : 'text-white'}`}
+              className="text-2xl focus:outline-none text-white hover:text-secondary transition-colors"
             >
               {isOpen ? <X /> : <Menu />}
             </button>
@@ -87,23 +92,29 @@ const Navigation: React.FC<NavigationProps> = ({ language }) => {
         </div>
       </div>
 
-      {/* Mobile Menu */}
-      <div className={`md:hidden absolute top-full left-0 w-full bg-white shadow-xl transition-all duration-300 ease-in-out transform origin-top ${isOpen ? 'scale-y-100 opacity-100' : 'scale-y-0 opacity-0 h-0'}`}>
-        <div className="px-4 pt-4 pb-6 space-y-2 flex flex-col">
+      {/* Mobile Menu (Dark Theme) */}
+      <div className={`md:hidden absolute top-full left-0 w-full bg-emerald-900/95 backdrop-blur-xl border-t border-emerald-800 shadow-2xl transition-all duration-300 ease-in-out transform origin-top ${isOpen ? 'scale-y-100 opacity-100' : 'scale-y-0 opacity-0 h-0'}`}>
+        <div className="px-6 pt-6 pb-8 space-y-4 flex flex-col">
           {navLinks.map((link) => (
             <a 
               key={link.name}
               href={link.href}
-              className={`block px-3 py-3 text-base font-medium rounded-md flex items-center gap-2 ${
-                  link.special ? 'text-secondary bg-orange-50' : 'text-gray-700 hover:text-secondary hover:bg-gray-50'
+              className={`block px-4 py-3 text-base font-medium rounded-xl flex items-center gap-3 transition-colors ${
+                  link.special 
+                  ? 'text-yellow-400 bg-yellow-400/10 border border-yellow-400/20' 
+                  : 'text-gray-200 hover:text-white hover:bg-emerald-800'
               }`}
               onClick={() => setIsOpen(false)}
             >
-              {link.special && <Sparkles size={16} />}
+              {link.special && <Sparkles size={18} />}
               {link.name}
             </a>
           ))}
-          <a href="#contact" className="mt-4 block w-full text-center bg-primary text-white font-bold py-3 rounded-lg" onClick={() => setIsOpen(false)}>
+          <a 
+            href="#contact" 
+            className="mt-6 block w-full text-center bg-secondary text-white font-bold py-4 rounded-xl shadow-lg" 
+            onClick={() => setIsOpen(false)}
+          >
             {t.book}
           </a>
         </div>

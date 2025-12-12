@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 import Navigation from './components/Navigation';
 import Hero from './components/Hero';
 import FeaturedTours from './components/FeaturedTours';
-import RosarioIslands from './components/RosarioIslands';
 import WhyChooseUs from './components/WhyChooseUs';
 import Testimonials from './components/Testimonials';
 import PracticalInfo from './components/PracticalInfo';
@@ -70,12 +69,9 @@ function App() {
         {/* 1. Hero Header */}
         <Hero language={language} />
         
-        {/* === SECTION 1: CATALOG === */}
-        {/* 3. Featured Tours (Includes the Price Menu) */}
+        {/* === SECTION 1: UNIFIED CATALOG (Tours + Islands) === */}
+        {/* 3. Featured Tours (Menu + Unified Visual Gallery) */}
         <FeaturedTours language={language} />
-
-        {/* NEW: Rosario Islands Specific Section */}
-        <RosarioIslands language={language} />
         
         {/* 8. Interactive Tour Map (Fits well with Catalog) */}
         <InteractiveMap />
