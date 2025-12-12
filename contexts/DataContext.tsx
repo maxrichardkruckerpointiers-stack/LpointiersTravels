@@ -27,7 +27,11 @@ const DataContext = createContext<DataContextType | undefined>(undefined);
 export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [tours, setTours] = useState<Tour[]>([]);
   const [islands, setIslands] = useState<Island[]>([]);
-  const [siteConfig, setSiteConfig] = useState<SiteConfig>({ logoUrl: '' });
+  
+  // Empty logoUrl forces the app to render the <Logo /> component defined in components/Logo.tsx
+  const [siteConfig, setSiteConfig] = useState<SiteConfig>({ 
+    logoUrl: '' 
+  });
   
   // Auth State
   const [user, setUser] = useState<User | null>(null);

@@ -44,10 +44,11 @@ const Navigation: React.FC<NavigationProps> = ({ language }) => {
           {/* LOGO */}
           {siteConfig.logoUrl ? (
             <div className="flex-shrink-0">
+               {/* Removed 'brightness-0 invert' to show the logo in its original colors as requested */}
                <img 
                  src={siteConfig.logoUrl} 
-                 alt="EcoExplora Mundo Logo" 
-                 className="h-12 md:h-14 w-auto object-contain transition-all brightness-0 invert" 
+                 alt="TurismoVivo Logo" 
+                 className="h-12 md:h-14 w-auto object-contain transition-all" 
                />
             </div>
           ) : (

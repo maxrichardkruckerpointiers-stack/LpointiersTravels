@@ -17,10 +17,11 @@ const Footer: React.FC<FooterProps> = ({ onAdminClick }) => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           <div className="col-span-1 md:col-span-2">
              {siteConfig.logoUrl ? (
+                // Removed 'brightness-0 invert' to show original colors
                 <img 
                   src={siteConfig.logoUrl} 
-                  alt="EcoExplora Mundo Logo" 
-                  className="h-16 w-auto object-contain mb-4 brightness-0 invert" 
+                  alt="TurismoVivo Logo" 
+                  className="h-16 w-auto object-contain mb-4" 
                 />
              ) : (
                 <div className="mb-6">
@@ -59,7 +60,7 @@ const Footer: React.FC<FooterProps> = ({ onAdminClick }) => {
         </div>
         
         <div className="border-t border-primary pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
-          <p>&copy; {new Date().getFullYear()} EcoExplora Mundo. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} TurismoVivo. All rights reserved.</p>
           
           {/* Admin Entry Point */}
           {onAdminClick && (

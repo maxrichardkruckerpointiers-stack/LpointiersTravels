@@ -13,9 +13,9 @@ export const TRANSLATIONS = {
       loginBtn: 'Log In / Sign Up'
     },
     hero: {
-      badge: '#1 Rated Eco-Agency in Colombia',
-      titlePrefix: 'Discover the Soul of',
-      subtitle: 'Unforgettable journeys crafted with passion. We combine premium quality, fair pricing, and a stellar reputation to give you the trip of a lifetime.',
+      badge: '#1 Rated Agency in Colombia',
+      titlePrefix: 'Feel the Energy of',
+      subtitle: 'Unforgettable journeys crafted with passion. TurismoVivo combines premium quality, fair pricing, and a stellar reputation to give you the trip of a lifetime.',
       ctaPrimary: 'Explore Adventures',
       ctaSecondary: 'Watch Our Story'
     },
@@ -32,7 +32,7 @@ export const TRANSLATIONS = {
       visionText: "To be the most reputable agency in the region, recognized for creating lasting memories and setting the standard for excellence and value in the tourism industry."
     },
     planner: {
-      badge: 'EcoExplora AI Agent',
+      badge: 'TurismoVivo AI',
       title: 'Design Your Dream Trip',
       subtitle: 'Tell us your vibe, and we will build a custom itinerary with the best market rates and hidden gems.',
       labelGroup: 'Who is traveling?',
@@ -45,18 +45,18 @@ export const TRANSLATIONS = {
     },
     banner: {
       text: "🎉 Grand Opening Offer! 20% OFF your first adventure!",
-      code: "Use Code: ECO20",
+      code: "Use Code: VIVO20",
       dismiss: "Dismiss"
     },
     loyalty: {
-      title: "Eco-Rewards Program",
+      title: "Vivo Rewards Program",
       subtitle: "Join our community. Share your unique experiences and earn points for discounts on future adventures.",
       step1Title: "Travel",
-      step1Desc: "Book any EcoExplora tour.",
+      step1Desc: "Book any TurismoVivo tour.",
       step2Title: "Review",
       step2Desc: "Share your story + photo.",
       step3Title: "Earn",
-      step3Desc: "Get 500 Eco-Points.",
+      step3Desc: "Get 500 Vivo-Points.",
       cta: "Start Earning Today"
     },
     safety: {
@@ -66,14 +66,14 @@ export const TRANSLATIONS = {
       risk1: "Hidden Fees & 'Gringo Tax' (Overcharging)",
       risk2: "Unlicensed Boats & Safety Hazards",
       risk3: "No Refunds for Bad Weather/Cancellations",
-      safeTitle: "The EcoExplora Promise",
+      safeTitle: "The TurismoVivo Promise",
       safe1: "100% Fixed & Transparent Pricing",
       safe2: "Certified Insurance & Legal RNT License",
       safe3: "Secure Online Payments (No Cash Scams)"
     },
     form: {
       title: "Start Your Journey",
-      subtitle: "Ready for an unforgettable experience? Fill out the form below to secure your spot with EcoExplora Mundo.",
+      subtitle: "Ready for an unforgettable experience? Fill out the form below to secure your spot with TurismoVivo.",
       name: "Full Name",
       email: "Email",
       phone: "WhatsApp / Phone",
@@ -81,7 +81,7 @@ export const TRANSLATIONS = {
       promo: "Promo Code (Optional)",
       submit: "Request Quote",
       successTitle: "Adventure Awaits!",
-      successMsg: "Thank you for choosing EcoExplora Mundo! We are reviewing your request and will send a quote with your discount applied shortly.",
+      successMsg: "Thank you for choosing TurismoVivo! We are reviewing your request and will send a quote with your discount applied shortly.",
       download: "Download Cartagena Guide"
     }
   },
@@ -97,8 +97,8 @@ export const TRANSLATIONS = {
     },
     hero: {
       badge: '#1 Agencia Valorada en Colombia',
-      titlePrefix: 'Descubre el Alma de',
-      subtitle: 'Viajes inolvidables creados con pasión. Combinamos calidad premium, precios justos y una reputación estelar para darte el viaje de tu vida.',
+      titlePrefix: 'Siente la Energía de',
+      subtitle: 'Viajes inolvidables creados con pasión. TurismoVivo combina calidad premium, precios justos y una reputación estelar para darte el viaje de tu vida.',
       ctaPrimary: 'Explorar Aventuras',
       ctaSecondary: 'Ver Nuestra Historia'
     },
@@ -115,7 +115,7 @@ export const TRANSLATIONS = {
       visionText: "Ser la agencia más reputada de la región, reconocida por crear recuerdos duraderos y establecer el estándar de excelencia y valor en la industria turística."
     },
     planner: {
-      badge: 'Agente EcoExplora',
+      badge: 'Agente TurismoVivo',
       title: 'Diseña Tu Viaje Soñado',
       subtitle: 'Dinos tu estilo y construiremos un itinerario personalizado con las mejores tarifas del mercado y joyas ocultas.',
       labelGroup: '¿Quién viaja?',
@@ -128,18 +128,18 @@ export const TRANSLATIONS = {
     },
     banner: {
       text: "🎉 ¡Oferta de Lanzamiento! 20% OFF en tu primera aventura!",
-      code: "Usa Código: ECO20",
+      code: "Usa Código: VIVO20",
       dismiss: "Cerrar"
     },
     loyalty: {
-      title: "Programa Eco-Rewards",
+      title: "Programa Vivo Rewards",
       subtitle: "Únete a nuestra comunidad. Comparte tus experiencias únicas y gana puntos para descuentos en futuras aventuras.",
       step1Title: "Viaja",
-      step1Desc: "Reserva con EcoExplora.",
+      step1Desc: "Reserva con TurismoVivo.",
       step2Title: "Reseña",
       step2Desc: "Comparte tu historia + foto.",
       step3Title: "Gana",
-      step3Desc: "Recibe 500 Eco-Puntos.",
+      step3Desc: "Recibe 500 Vivo-Puntos.",
       cta: "Empieza a Ganar Hoy"
     },
     safety: {
@@ -149,14 +149,14 @@ export const TRANSLATIONS = {
       risk1: "Tarifas Ocultas y Sobreprecios ('Impuesto Turista')",
       risk2: "Lanchas sin Licencia ni Seguros",
       risk3: "Sin Reembolsos por Mal Clima",
-      safeTitle: "La Promesa EcoExplora",
+      safeTitle: "La Promesa TurismoVivo",
       safe1: "Precios 100% Fijos y Transparentes",
       safe2: "Seguro de Viaje y Licencia RNT Oficial",
       safe3: "Pagos Online Seguros (Sin Estafas de Efectivo)"
     },
     form: {
       title: "Comienza Tu Viaje",
-      subtitle: "¿Listo para una experiencia inolvidable? Completa el formulario para asegurar tu lugar con EcoExplora Mundo.",
+      subtitle: "¿Listo para una experiencia inolvidable? Completa el formulario para asegurar tu lugar con TurismoVivo.",
       name: "Nombre Completo",
       email: "Correo Electrónico",
       phone: "WhatsApp / Teléfono",
@@ -164,7 +164,7 @@ export const TRANSLATIONS = {
       promo: "Código Promocional (Opcional)",
       submit: "Solicitar Cotización",
       successTitle: "¡La Aventura Te Espera!",
-      successMsg: "¡Gracias por elegir EcoExplora Mundo! Estamos revisando tu solicitud y te enviaremos una cotización con tu descuento aplicado pronto.",
+      successMsg: "¡Gracias por elegir TurismoVivo! Estamos revisando tu solicitud y te enviaremos una cotización con tu descuento aplicado pronto.",
       download: "Descargar Guía Gratis"
     }
   }
