@@ -20,16 +20,17 @@ const Hero: React.FC<HeroProps> = ({ language }) => {
           className="w-full h-full object-cover"
         />
         {/* Overlay gradient for readability */}
-        <div className="absolute inset-0 bg-gradient-to-t from-emerald-950/80 via-emerald-900/50 to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-emerald-950/90 via-emerald-900/60 to-emerald-950/30"></div>
       </div>
 
       <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto mt-16">
-        <span className="inline-block py-1 px-3 rounded-full bg-orange-500/20 text-orange-200 border border-orange-400/30 backdrop-blur-sm text-sm font-semibold tracking-wider mb-6 animate-fade-in-up">
+        <span className="inline-block py-1 px-3 rounded-full bg-emerald-800/50 text-emerald-100 border border-emerald-400/30 backdrop-blur-sm text-sm font-semibold tracking-wider mb-6 animate-fade-in-up shadow-lg">
           {t.badge}
         </span>
         <h1 className="text-4xl sm:text-6xl md:text-7xl font-serif font-bold text-white leading-tight mb-6 shadow-sm">
           {t.titlePrefix} <br />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-yellow-200">
+          {/* Thematic Gradient: Emerald to Teal/Aqua */}
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-secondary-light">
             Cartagena
           </span>
         </h1>
@@ -40,7 +41,7 @@ const Hero: React.FC<HeroProps> = ({ language }) => {
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
           <a 
             href="#experiences" 
-            className="w-full sm:w-auto px-8 py-4 bg-orange-500 hover:bg-orange-600 text-white rounded-full font-bold text-lg transition-transform hover:scale-105 shadow-lg shadow-orange-500/30"
+            className="w-full sm:w-auto px-8 py-4 bg-primary hover:bg-primary-light text-white rounded-full font-bold text-lg transition-transform hover:scale-105 shadow-lg shadow-emerald-900/50 border border-emerald-700"
           >
             {t.ctaPrimary}
           </a>

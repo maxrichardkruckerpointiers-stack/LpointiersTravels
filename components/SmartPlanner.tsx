@@ -10,20 +10,16 @@ interface SmartPlannerProps {
 
 // Helper to get high-quality images based on category/location
 const getImageForActivity = (category: string, location: string): string => {
-  // High quality Unsplash IDs for Cartagena
   const images: Record<string, string> = {
-    'Beach': 'https://images.unsplash.com/photo-1596436807738-f689b6e82a45?q=80&w=800&auto=format&fit=crop', // Beach
-    'History': 'https://images.unsplash.com/photo-1629833590742-02c31e428df1?q=80&w=800&auto=format&fit=crop', // Colonial
-    'Food': 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=800&auto=format&fit=crop', // Food
-    'Party': 'https://images.unsplash.com/photo-1542114633-289b52a550eb?q=80&w=800&auto=format&fit=crop', // Drinks/Night
-    'Nature': 'https://images.unsplash.com/photo-1582791694766-3d3cb0152439?q=80&w=800&auto=format&fit=crop', // Mangroves/Nature
+    'Beach': 'https://images.unsplash.com/photo-1596436807738-f689b6e82a45?q=80&w=800&auto=format&fit=crop',
+    'History': 'https://images.unsplash.com/photo-1629833590742-02c31e428df1?q=80&w=800&auto=format&fit=crop',
+    'Food': 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=800&auto=format&fit=crop',
+    'Party': 'https://images.unsplash.com/photo-1542114633-289b52a550eb?q=80&w=800&auto=format&fit=crop',
+    'Nature': 'https://images.unsplash.com/photo-1582791694766-3d3cb0152439?q=80&w=800&auto=format&fit=crop',
   };
-
-  // Simple keyword matching override
   const loc = location.toLowerCase();
   if (loc.includes('rosario') || loc.includes('cholon') || loc.includes('island')) return images['Beach'];
   if (loc.includes('castle') || loc.includes('felipe') || loc.includes('walled')) return images['History'];
-  
   return images[category] || images['History'];
 };
 
@@ -54,7 +50,7 @@ const SmartPlanner: React.FC<SmartPlannerProps> = ({ language }) => {
       {/* Background Decor */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden opacity-20 pointer-events-none">
         <div className="absolute top-10 left-10 w-64 h-64 bg-secondary rounded-full filter blur-3xl"></div>
-        <div className="absolute bottom-10 right-10 w-96 h-96 bg-blue-500 rounded-full filter blur-3xl"></div>
+        <div className="absolute bottom-10 right-10 w-96 h-96 bg-primary-light rounded-full filter blur-3xl"></div>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -70,7 +66,7 @@ const SmartPlanner: React.FC<SmartPlannerProps> = ({ language }) => {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           
-          {/* Controls - Takes 4 columns */}
+          {/* Controls */}
           <div className="lg:col-span-4 bg-white/10 backdrop-blur-md p-6 sm:p-8 rounded-3xl border border-white/20 shadow-xl">
             <h3 className="text-xl font-bold mb-6 flex items-center gap-2"><Map size={24} className="text-secondary" /> {language === 'es' ? 'Preferencias' : 'Preferences'}</h3>
             
@@ -146,7 +142,7 @@ const SmartPlanner: React.FC<SmartPlannerProps> = ({ language }) => {
               <button 
                 onClick={handleGenerate}
                 disabled={loading}
-                className="w-full mt-4 bg-gradient-to-r from-secondary to-orange-600 hover:from-secondary-dark hover:to-orange-700 text-white font-bold py-4 rounded-xl transition-all shadow-lg hover:shadow-orange-500/30 flex items-center justify-center gap-2 disabled:opacity-70"
+                className="w-full mt-4 bg-gradient-to-r from-secondary to-primary-light hover:from-secondary-dark hover:to-primary text-white font-bold py-4 rounded-xl transition-all shadow-lg hover:shadow-teal-500/30 flex items-center justify-center gap-2 disabled:opacity-70"
               >
                 {loading ? <Loader2 className="animate-spin" /> : <Sparkles />} 
                 {loading ? t.btnLoading : t.btnGenerate}
@@ -154,7 +150,7 @@ const SmartPlanner: React.FC<SmartPlannerProps> = ({ language }) => {
             </div>
           </div>
 
-          {/* Result Display - Takes 8 columns */}
+          {/* Result Display */}
           <div className="lg:col-span-8 min-h-[400px] flex items-center justify-center">
             {!plan && !loading && (
               <div className="text-center opacity-50 p-12 border-2 border-dashed border-white/20 rounded-3xl w-full h-full flex flex-col items-center justify-center">
@@ -195,7 +191,7 @@ const SmartPlanner: React.FC<SmartPlannerProps> = ({ language }) => {
                            </div>
                         </div>
                         <div className="p-4 flex-grow flex flex-col">
-                           <div className="flex items-center text-xs text-orange-600 font-bold mb-1 uppercase tracking-wide">
+                           <div className="flex items-center text-xs text-secondary font-bold mb-1 uppercase tracking-wide">
                               <Clock size={12} className="mr-1" /> {item.time}
                            </div>
                            <h4 className="font-bold text-gray-900 mb-1 leading-tight">{item.activity}</h4>

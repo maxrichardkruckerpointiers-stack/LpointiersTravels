@@ -3,13 +3,6 @@ import { ShieldCheck, UserCheck, Heart, Star, Target, Eye } from 'lucide-react';
 import { Language } from '../types';
 import { TRANSLATIONS } from '../translations';
 
-// We need to inject language props to access translations here, but for simplicity in this hot-swap
-// we will assume the parent passes it or we use a context in a larger app.
-// For now, let's just use the App's language state if possible, or default to English/Spanish via props.
-// Ideally, we update App.tsx to pass language here, but to avoid changing App.tsx signature too much,
-// we will just use a hardcoded check or update App.tsx. 
-// Let's update App.tsx to pass language to WhyChooseUs.
-
 interface WhyChooseUsProps {
   language?: Language;
 }
@@ -52,23 +45,23 @@ const WhyChooseUs: React.FC<WhyChooseUsProps> = ({ language = 'en' }) => {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {/* Mission */}
-                <div className="bg-white p-8 rounded-3xl shadow-lg border-l-8 border-emerald-600 flex flex-col items-start hover:shadow-xl transition-shadow">
-                    <div className="bg-emerald-100 p-3 rounded-full mb-4 text-emerald-800">
+                {/* Mission - Primary Green */}
+                <div className="bg-white p-8 rounded-3xl shadow-lg border-l-8 border-primary flex flex-col items-start hover:shadow-xl transition-shadow">
+                    <div className="bg-emerald-100 p-3 rounded-full mb-4 text-primary">
                         <Target size={32} />
                     </div>
-                    <h3 className="text-2xl font-bold text-gray-900 mb-4">{t.company.missionTitle}</h3>
+                    <h3 className="text-2xl font-bold text-primary-dark mb-4">{t.company.missionTitle}</h3>
                     <p className="text-gray-600 leading-relaxed text-lg">
                         {t.company.missionText}
                     </p>
                 </div>
 
-                {/* Vision */}
+                {/* Vision - Secondary Teal (Thematic) */}
                 <div className="bg-white p-8 rounded-3xl shadow-lg border-l-8 border-secondary flex flex-col items-start hover:shadow-xl transition-shadow">
-                    <div className="bg-orange-100 p-3 rounded-full mb-4 text-orange-600">
+                    <div className="bg-teal-50 p-3 rounded-full mb-4 text-secondary">
                         <Eye size={32} />
                     </div>
-                    <h3 className="text-2xl font-bold text-gray-900 mb-4">{t.company.visionTitle}</h3>
+                    <h3 className="text-2xl font-bold text-secondary-dark mb-4">{t.company.visionTitle}</h3>
                     <p className="text-gray-600 leading-relaxed text-lg">
                         {t.company.visionText}
                     </p>
@@ -79,8 +72,8 @@ const WhyChooseUs: React.FC<WhyChooseUsProps> = ({ language = 'en' }) => {
         {/* Benefits Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {benefits.map((benefit, idx) => (
-            <div key={idx} className="flex flex-col items-center text-center p-6 rounded-2xl bg-white hover:bg-emerald-50 transition-colors shadow-sm hover:shadow-md border border-gray-100">
-              <div className="w-16 h-16 bg-emerald-100 text-emerald-800 rounded-full flex items-center justify-center mb-4">
+            <div key={idx} className="flex flex-col items-center text-center p-6 rounded-2xl bg-white hover:bg-emerald-50 transition-colors shadow-sm hover:shadow-md border border-gray-100 group">
+              <div className="w-16 h-16 bg-emerald-100 text-primary rounded-full flex items-center justify-center mb-4 group-hover:bg-primary group-hover:text-white transition-colors">
                 {benefit.icon}
               </div>
               <h3 className="text-lg font-bold text-gray-900 mb-2">{benefit.title}</h3>

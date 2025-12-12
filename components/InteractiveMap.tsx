@@ -33,24 +33,24 @@ const InteractiveMap: React.FC = () => {
               <div className="relative">
                 <MapPin 
                     size={40} 
-                    className={`text-orange-600 drop-shadow-lg transition-transform hover:scale-125 ${activeMarker === marker.id ? 'scale-125 text-orange-500' : ''}`} 
+                    className={`text-secondary drop-shadow-lg transition-transform hover:scale-125 ${activeMarker === marker.id ? 'scale-125 text-primary' : ''}`} 
                     fill="currentColor"
                 />
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75 top-0 left-0 -z-10"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75 top-0 left-0 -z-10"></span>
               </div>
 
               {/* Tooltip Card */}
               {activeMarker === marker.id && (
-                <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2 w-64 bg-white p-3 rounded-xl shadow-2xl z-20 animate-fade-in-up">
+                <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2 w-64 bg-white p-3 rounded-xl shadow-2xl z-20 animate-fade-in-up border border-emerald-100">
                   <div className="h-32 w-full rounded-lg overflow-hidden mb-3">
                     <img src={marker.image} alt={marker.title} className="w-full h-full object-cover" />
                   </div>
-                  <h4 className="font-bold text-gray-900">{marker.title}</h4>
+                  <h4 className="font-bold text-emerald-950">{marker.title}</h4>
                   <p className="text-xs text-gray-600 mb-2">{marker.description}</p>
-                  <a href="#experiences" className="text-xs font-bold text-orange-500 hover:text-orange-600">View Tours &rarr;</a>
+                  <a href="#experiences" className="text-xs font-bold text-primary hover:text-primary-light">View Tours &rarr;</a>
                   
                   {/* Arrow */}
-                  <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-white rotate-45"></div>
+                  <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-white rotate-45 border-r border-b border-emerald-100"></div>
                 </div>
               )}
             </div>

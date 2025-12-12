@@ -25,7 +25,7 @@ const FeaturedTours: React.FC = () => {
               onClick={() => setFilter(cat as any)}
               className={`px-6 py-2 rounded-full text-sm font-semibold transition-all duration-300 ${
                 filter === cat 
-                  ? 'bg-emerald-800 text-white shadow-md transform scale-105' 
+                  ? 'bg-primary text-white shadow-md transform scale-105' 
                   : 'bg-white text-gray-600 hover:bg-emerald-50 border border-gray-200'
               }`}
             >
@@ -37,17 +37,18 @@ const FeaturedTours: React.FC = () => {
         {/* Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {filteredTours.map((tour) => (
-            <div key={tour.id} className="bg-white rounded-2xl shadow-lg overflow-hidden group hover:shadow-xl transition-shadow duration-300 flex flex-col h-full">
+            <div key={tour.id} className="bg-white rounded-2xl shadow-lg overflow-hidden group hover:shadow-xl transition-shadow duration-300 flex flex-col h-full border border-gray-100">
               <div className="relative h-48 overflow-hidden">
                 <img 
                   src={tour.image} 
                   alt={tour.title} 
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
-                <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-lg text-xs font-bold text-emerald-800 shadow-sm">
+                <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-lg text-sm font-bold text-primary shadow-sm border border-emerald-100">
                   ${tour.price} USD
                 </div>
-                <div className="absolute top-4 left-4 bg-orange-500 text-white px-2 py-1 rounded-lg text-xs font-bold uppercase tracking-wider">
+                {/* Thematic Category Badge: Teal/Secondary */}
+                <div className="absolute top-4 left-4 bg-secondary text-white px-2 py-1 rounded-lg text-xs font-bold uppercase tracking-wider shadow-sm">
                   {tour.category}
                 </div>
               </div>
@@ -61,7 +62,7 @@ const FeaturedTours: React.FC = () => {
                     {tour.ecoScore && (
                         <div className="group/eco relative cursor-help">
                             <div className={`flex items-center gap-1 text-[10px] px-2 py-1 rounded-full font-bold border ${
-                                tour.ecoScore.level === 'High' ? 'bg-green-50 text-green-700 border-green-200' : 'bg-yellow-50 text-yellow-700 border-yellow-200'
+                                tour.ecoScore.level === 'High' ? 'bg-green-50 text-green-700 border-green-200' : 'bg-teal-50 text-teal-700 border-teal-200'
                             }`}>
                                 <Leaf size={10} /> Eco: {tour.ecoScore.level}
                             </div>
@@ -75,13 +76,13 @@ const FeaturedTours: React.FC = () => {
                     )}
                 </div>
 
-                <h3 className="text-xl font-bold text-gray-900 mb-2 leading-tight">{tour.title}</h3>
+                <h3 className="text-xl font-bold text-emerald-950 mb-2 leading-tight">{tour.title}</h3>
                 <div className="flex items-center text-gray-500 text-sm mb-4">
                   <Clock size={16} className="mr-1" /> {tour.duration}
                 </div>
                 <p className="text-gray-600 text-sm mb-4 line-clamp-3 flex-grow">{tour.description}</p>
                 
-                <a href="#contact" className="mt-auto w-full flex items-center justify-center gap-2 py-3 border border-emerald-800 text-emerald-800 rounded-xl font-semibold hover:bg-emerald-800 hover:text-white transition-colors group-hover:bg-emerald-800 group-hover:text-white">
+                <a href="#contact" className="mt-auto w-full flex items-center justify-center gap-2 py-3 border border-primary text-primary rounded-xl font-semibold hover:bg-primary hover:text-white transition-colors group-hover:bg-primary group-hover:text-white">
                   Book Now <ArrowRight size={16} />
                 </a>
               </div>

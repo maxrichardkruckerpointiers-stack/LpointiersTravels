@@ -40,7 +40,7 @@ const AiChatAssistant: React.FC = () => {
       {/* Floating Button */}
       <button 
         onClick={() => setIsOpen(true)}
-        className={`fixed bottom-6 right-6 z-50 bg-orange-500 text-white p-4 rounded-full shadow-2xl hover:bg-orange-600 transition-transform hover:scale-110 ${isOpen ? 'hidden' : 'flex'}`}
+        className={`fixed bottom-6 right-6 z-50 bg-primary text-white p-4 rounded-full shadow-2xl hover:bg-emerald-800 transition-transform hover:scale-110 ${isOpen ? 'hidden' : 'flex'}`}
       >
         <MessageCircle size={28} />
       </button>
@@ -59,7 +59,7 @@ const AiChatAssistant: React.FC = () => {
               <p className="text-xs text-emerald-200">Usually replies instantly</p>
             </div>
           </div>
-          <button onClick={() => setIsOpen(false)} className="hover:text-orange-400">
+          <button onClick={() => setIsOpen(false)} className="hover:text-secondary-light">
             <X size={20} />
           </button>
         </div>
@@ -70,7 +70,7 @@ const AiChatAssistant: React.FC = () => {
             <div key={idx} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
               <div className={`max-w-[80%] px-4 py-2 rounded-2xl text-sm ${
                 msg.role === 'user' 
-                  ? 'bg-orange-500 text-white rounded-br-none' 
+                  ? 'bg-primary text-white rounded-br-none' 
                   : 'bg-white text-gray-800 border border-gray-200 rounded-bl-none shadow-sm'
               }`}>
                 {msg.text}
